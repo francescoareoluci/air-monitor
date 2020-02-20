@@ -6,17 +6,16 @@
 - **Students**: Francesco Areoluci
 - **CFUs**: 9
 
-In this project I will implement a cloud based web application to show air monitoring data coming from an air quality sensor. The project idea has come up after a proposal submitted by Walter Nunziati (Magenta srl) to show the potential of a web development process in which the role of the server, and all the effort that will be spent on that side, is completely replaced by all the funcionalities that a Cloud host could offer. Serveless web development has recently growing its popularity and it has been formalized as JAM (Javscript, APIs, Markup) stack [1]. The application will be developed to use data coming from an air quality sensor (provided by Magenta) to show the user a complete overview of air quality index (such as co2, no3, pm2.5, pm10, etc.) in the surroundings of the sensor (Novoli, Florence).
+In this project I will implement a cloud based web application to show air monitoring data coming from an air quality sensor. The project idea has come up after a proposal submitted by Walter Nunziati (Magenta srl) to show the potential of a web development process in which the role of the server, and all the effort that will be spent on that side, is completely replaced by all the funcionalities that a Cloud host can offer. Serveless web development has recently growing its popularity and it has been formalized as JAM (Javscript, APIs, Markup) stack [1]. The application will be developed to use data coming from an air quality sensor (provided by Magenta) to show the user a complete overview of air quality index (such as co2, no3, pm2.5, pm10, etc.) in the surroundings of the sensor (Novoli, Florence).
 
 # Tools and Techniques
 
 The main tools and techniques that will be used are the following:
-- **SensorWebHub**: the platform that is used by the sensor to collect data \[2\]. 
-- **Microsoft Azure**: the cloud host for all the functionalities of storing and accessing sensor data in a NoSQL database \[3\].
+- **SensorWebHub**: the platform used by the sensor to collect data \[2\]. 
+- **Microsoft Azure**: Cloud host providing all the functionalities of storing and accessing sensor data in a NoSQL database \[3\].
 - **React**: a framework for the development of the front-end side \[4\].
 - **React Redux**: React library for application state management \[5\].
-- **Echarts**: an open-source tool for plotting sensor data \[6\].
-- **Figma**: interface design tool to mockup the web interface \[7\].
+- **Figma**: interface design tool to mockup the web interface \[6\].
 
 # Expected Outcomes
 
@@ -27,7 +26,7 @@ The followings are the expected outcomes of this project:
 
 # Summary
 
-The purpose of this project is to explore a new development process for building serverless web application which involve the use of Cloud functionalities. This approach can result in a speedup in terms of developing time and a lower mantainance cost. If successful, this prototype can be a first step in the study of the scaling factor in developing serverless demanding and complex web application.
+The purpose of this project is to explore a new development process for building serverless web application which involve the use of Cloud functionalities. This approach can result in a speedup in terms of developing time and a lower mantainance cost. If successful, this prototype can be a first step in the study of demanding and complex serverless web application development.
 
 # Bibliography
 
@@ -41,6 +40,4 @@ The purpose of this project is to explore a new development process for building
 
 \[5\] https://react-redux.js.org/
 
-\[6\] https://www.echartsjs.com/
-
-\[7\] https://www.figma.com/
+\[6\] https://www.figma.com/

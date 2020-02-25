@@ -3,7 +3,7 @@
 
 - **Academic Year**: 2019-2020
 - **Project Title**: Serverless Cloud Based Air Quality Monitoring Web Application
-- **Students**: Francesco Areoluci
+- **Student**: Francesco Areoluci
 - **CFUs**: 9
 
 In this project I will implement a cloud based web application to show air monitoring data coming from an air quality sensor. The project idea has come up after a proposal submitted by Walter Nunziati (Magenta srl) to show the potential of a web development process in which the role of the server, and all the effort that will be spent on that side, is completely replaced by all the funcionalities that a Cloud host can offer. Serveless web development has recently growing its popularity and it has been formalized as JAM (Javscript, APIs, Markup) stack [1]. The application will be developed to use data coming from an air quality sensor (provided by Magenta) to show the user a complete overview of air quality index (such as co2, no3, pm2.5, pm10, etc.) in the surroundings of the sensor (Novoli, Florence).
@@ -26,7 +26,7 @@ The followings are the expected outcomes of this project:
 
 # Summary
 
-The purpose of this project is to explore a new development process for building serverless web application which involve the use of Cloud functionalities. This approach can result in a speedup in terms of developing time and a lower mantainance cost. If successful, this prototype can be a first step in the study of demanding and complex serverless web application development.
+The purpose of this project is to explore a new development process for building serverless web application which involve the use of Cloud functionalities. This approach can result in a speedup in terms of developing time and a lower mantainance cost. If successful, this prototype can be a first step in the study of demanding and complex serverless web application development. Moreover, the developed web application can be further improved to extend its functionalities to more devices and users.
 
 # Bibliography
 

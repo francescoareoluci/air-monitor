@@ -15,6 +15,23 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: 
+        [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader',
       }
     ]
   },
@@ -24,10 +41,17 @@ module.exports = {
     publicPath: "/dist/",
     filename: "bundle.js"
   },
+  //devServer: {
+  //  contentBase: path.join(__dirname, "public/"),
+  //  port: 3000,
+  //  publicPath: "http://192.168.43.123:3000/dist/",
+  //  hotOnly: true
+  //},
   devServer: {
     contentBase: path.join(__dirname, "public/"),
+    host: '192.168.43.123',//your ip address
     port: 3000,
-    publicPath: "http://localhost:3000/dist/",
+    disableHostCheck: true,
     hotOnly: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]

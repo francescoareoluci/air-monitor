@@ -3,15 +3,29 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  withRouter,
 } from "react-router-dom";
 
 import Home from "../components/home"
 import DeviceInfo from "../components/device_info"
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+const AnimatedSwitch = withRouter(({ location }) => (
+  <TransitionGroup>
+    {/*<CSSTransition key={location.key} classNames="slide" timeout={500}>*/}
+      <Switch location={location}>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/deviceInfo" component={DeviceInfo} />
+      </Switch>
+    {/*</CSSTransition>*/}
+  </TransitionGroup>
+));
 
 export default function App() {
   return (
     <Router>
+      {/*
       <div>
         <nav>
           <ul>
@@ -23,18 +37,9 @@ export default function App() {
             </li>
           </ul>
         </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/deviceInfo">
-            <DeviceInfo />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
       </div>
+      */}
+      <AnimatedSwitch />
     </Router>
   );
 }

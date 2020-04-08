@@ -1,0 +1,220 @@
+@font-face {
+    font-family: "montserrat-regular";
+    src: url(../../fonts/montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: "montserrat-semibold";
+    src: url(../../fonts/montserrat/Montserrat-SemiBold.ttf);
+}
+
+@keyframes hide-hover {
+    0%   { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+@keyframes show-hover {
+    0%   { opacity: 0; display:none; }
+    100% { opacity: 1; }
+}
+
+
+.home {
+    background-color: #F8F8F8;
+    padding-bottom: 40px;
+    /* Added for compability with header positioning */
+    padding-top: 40px;
+}
+
+.header {
+    background-color: #51A9FF;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .40);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 3;
+}
+
+.header__text {
+    display: inline-block;
+    font-size: 24px;
+    font-family: "montserrat-regular";
+    color: #FFFFFF;
+    padding-left: 96px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.intro-card {
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    max-width: 80%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    border-radius: 5px;
+}
+
+.intro-card__title {
+    color: #51A9FF;
+    font-size: 44px;
+    font-family: "montserrat-semibold";
+    margin: auto;
+    text-align: center;
+}
+
+.intro-card__subtitle {
+    color: #7F8082;
+    font-size: 28px;
+    font-family: "montserrat-semibold";
+    margin: auto;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+.home-map-card {
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    max-width: 80%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    border-radius: 5px;
+}
+
+.card-title {
+    color: #51A9FF;
+    font-size: 16px;
+    font-family: "montserrat-semibold";
+    padding-left: 40px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.map-image-wrapper {
+    position: relative;
+}
+
+.map-image {
+    width: 100%;
+    /* height: auto; */
+    height: 520px;
+    display: block;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.map-image__hover {
+    background-color: rgba(30, 30, 30, 0.66);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: show-hover 0.5s 1 normal forwards;
+}
+
+.map-image__hover__text {
+    color: #F9F9F9;
+    font-size: 32px;
+    font-family: "montserrat-semibold";
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.map-image-wrapper:hover .map-image__hover {
+    animation: hide-hover 0.5s 1 normal forwards;
+}
+
+.fas .fa-chevron-left {
+    display: inline-block;
+}
+
+.dev-name-card {
+    position: relative;
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 20px 20px;
+    max-width: 80%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    border-radius: 5px;
+}
+
+.dev-name-card__device-name-text {
+    color: #51A9FF;
+    font-family: "montserrat-semibold";
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.dev-name-card__device-name {
+    position: absolute;
+    display: inline-block;
+    color: #7F8082;
+    font-size: 16px;
+    font-family: "montserrat-semibold";
+    right: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .header__text {
+        font-size: 20px;
+        padding-left: 48px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .intro-card {
+        margin-top: 64px;
+    }
+
+    .intro-card__title {
+        font-size: 32px;
+    }
+    
+    .intro-card__subtitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .home-map-card {
+        margin-top: 64px;
+    }
+
+    .card-title {
+        padding-left: 32px;
+    }
+
+    .map-image__hover__text {
+        font-size: 20px;
+    }
+
+    .map-image {
+        height: 320px;
+    }
+
+    .dev-name-card {
+        margin-top: 64px;
+    }
+
+    .dev-name-card__device-name-text {
+        font-size: 16px;
+        margin-left: 12px;
+    }
+    
+    .dev-name-card__device-name {
+        right: 40px;
+    }
+}

@@ -48,11 +48,12 @@ module.exports = {
   //  hotOnly: true
   //},
   devServer: {
-    contentBase: path.join(__dirname, "public/"),
+    contentBase: path.join(__dirname, "/public"),
     host: '192.168.43.123',//your ip address
     port: 3000,
     disableHostCheck: true,
-    hotOnly: true
+    hotOnly: true,
+    historyApiFallback: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 }

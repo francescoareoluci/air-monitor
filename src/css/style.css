@@ -139,15 +139,19 @@
 }
 
 .dev-name-card {
-    position: relative;
+    /*position: relative;*/
     background-color: #FFFFFF;
     margin: auto;
     margin-top: 80px;
     margin-bottom: 40px;
-    padding: 20px 20px;
+    padding: 20px 40px;
     max-width: 80%;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
     border-radius: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dev-name-card__device-name-text {
@@ -155,16 +159,16 @@
     font-family: "montserrat-semibold";
     font-size: 16px;
     display: inline-block;
-    margin-left: 20px;
+    flex: 1 1 auto;
 }
 
 .dev-name-card__device-name {
-    position: absolute;
     display: inline-block;
     color: #7F8082;
     font-size: 16px;
     font-family: "montserrat-semibold";
-    right: 40px;
+    flex: 1 1 auto;
+    text-align: right;
 }
 
 @media only screen and (max-width: 600px) {

@@ -6,6 +6,7 @@ import {
   Link,
   withRouter,
 } from "react-router-dom";
+import ScrollToTop from "./scroll_to_top";
 
 import Home from "../components/home"
 import DeviceInfo from "../components/device_info"
@@ -39,7 +40,9 @@ export default function App() {
         </nav>
       </div>
       */}
-      <AnimatedSwitch />
+      <ScrollToTop>
+        <AnimatedSwitch />
+      </ScrollToTop>
     </Router>
   );
 }

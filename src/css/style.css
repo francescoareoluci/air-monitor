@@ -1,3 +1,4 @@
+/* =============== Importing fonts =============== */
 @font-face {
     font-family: "montserrat-regular";
     src: url(../../fonts/montserrat/Montserrat-Regular.ttf);
@@ -8,6 +9,12 @@
     src: url(../../fonts/montserrat/Montserrat-SemiBold.ttf);
 }
 
+@font-face {
+    font-family: "montserrat-medium";
+    src: url(../../fonts/montserrat/Montserrat-Medium.ttf);
+}
+
+/* =============== Setting animations =============== */
 @keyframes hide-hover {
     0%   { opacity: 1; }
     100% { opacity: 0; display: none; }
@@ -15,6 +22,11 @@
 
 @keyframes show-hover {
     0%   { opacity: 0; display:none; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
@@ -43,6 +55,7 @@
     padding-left: 96px;
     padding-top: 12px;
     padding-bottom: 12px;
+    cursor: pointer;
 }
 
 .intro-card {
@@ -84,13 +97,35 @@
     border-radius: 5px;
 }
 
+.collapsable-card {
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    max-width: 80%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    border-radius: 5px;
+}
+
 .card-title {
     color: #51A9FF;
     font-size: 16px;
     font-family: "montserrat-semibold";
-    padding-left: 40px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px 40px;
+}
+
+.collapsable-card__card-title {
+    color: #51A9FF;
+    font-size: 16px;
+    font-family: "montserrat-semibold";
+    padding: 16px 40px;
+    border-bottom-color: rgb(190, 190, 190);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.accordion__heading:hover {
+    background-color: #ddd;
 }
 
 .map-image-wrapper {
@@ -104,6 +139,7 @@
     display: block;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    animation: fadein 0.35s ease-in;
 }
 
 .map-image__hover {
@@ -144,7 +180,7 @@
     margin: auto;
     margin-top: 80px;
     margin-bottom: 40px;
-    padding: 20px 40px;
+    padding: 16px 40px;
     max-width: 80%;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
     border-radius: 5px;
@@ -169,6 +205,40 @@
     font-family: "montserrat-semibold";
     flex: 1 1 auto;
     text-align: right;
+}
+
+.table-header-cell {
+    color: #7F8082;
+    font-size: 14px;
+    font-family: "montserrat-semibold";
+}
+
+.table-body-cell {
+    color: #90969C;
+    font-size: 14px;
+    font-family: "montserrat-medium";
+}
+
+.date-picker-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    padding-top: 10px;
+}
+
+.picker-container {
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    flex: 1 1 auto;
+}
+
+.date-picker-selector {
+    font-family: "montserrat-regular";
+    font-size: 8px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -197,8 +267,16 @@
         margin-top: 64px;
     }
 
+    .collapsable-card {
+        margin-top: 64px;
+    }
+
     .card-title {
-        padding-left: 32px;
+        padding-left: 24px;
+    }
+
+    .collapsable-card__card-title {
+        padding-left: 24px;
     }
 
     .map-image__hover__text {
@@ -211,14 +289,10 @@
 
     .dev-name-card {
         margin-top: 64px;
+        padding: 16px 20px;
     }
 
-    .dev-name-card__device-name-text {
-        font-size: 16px;
-        margin-left: 12px;
-    }
-    
-    .dev-name-card__device-name {
-        right: 40px;
+    .table-body-cell {
+        font-size: 12px;
     }
 }

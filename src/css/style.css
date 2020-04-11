@@ -30,7 +30,7 @@
     100% { opacity: 1; }
 }
 
-
+/* =============== Setting styles =============== */
 .home {
     background-color: #F8F8F8;
     padding-bottom: 40px;
@@ -38,6 +38,7 @@
     padding-top: 40px;
 }
 
+/* ======= Header styling ======= */
 .header {
     background-color: #51A9FF;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .40);
@@ -58,6 +59,7 @@
     cursor: pointer;
 }
 
+/* ======= Specific cards styling ======= */
 .intro-card {
     background-color: #FFFFFF;
     margin: auto;
@@ -97,6 +99,7 @@
     border-radius: 5px;
 }
 
+/* ======= Generic Card styling ======= */
 .collapsable-card {
     background-color: #FFFFFF;
     margin: auto;
@@ -124,10 +127,17 @@
     border-bottom-width: 1px;
 }
 
+/* @override */
 .accordion__heading:hover {
     background-color: #ddd;
 }
 
+/* @override */
+.accordion__button:focus {
+    outline: 0;
+}
+
+/* ======= Map styling ======= */
 .map-image-wrapper {
     position: relative;
 }
@@ -170,10 +180,7 @@
     animation: hide-hover 0.5s 1 normal forwards;
 }
 
-.fas .fa-chevron-left {
-    display: inline-block;
-}
-
+/* ======= Device Name card styling ======= */
 .dev-name-card {
     /*position: relative;*/
     background-color: #FFFFFF;
@@ -194,7 +201,7 @@
     color: #51A9FF;
     font-family: "montserrat-semibold";
     font-size: 16px;
-    display: inline-block;
+    /*display: inline-block;*/
     flex: 1 1 auto;
 }
 
@@ -207,40 +214,180 @@
     text-align: right;
 }
 
+/* ======= Table styling ======= */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/*
+.table-header {
+}
+
+.table-body {
+}
+*/
+
+.table-row {
+    display: flex;
+}
+
+.table-cell {
+    flex: 0 0 216px;
+    padding: 15px 5px;
+    border-bottom: 1px solid rgb(228, 227, 227);
+}
+
 .table-header-cell {
     color: #7F8082;
     font-size: 14px;
     font-family: "montserrat-semibold";
+    text-align: center;
 }
 
 .table-body-cell {
     color: #90969C;
     font-size: 14px;
     font-family: "montserrat-medium";
+    text-align: center;
 }
 
+/* ======= Date Picker styling ======= */
 .date-picker-wrapper {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 20px;
-    padding-top: 10px;
+    padding: 24px 16px;
 }
 
-.picker-container {
-    display: inline-block;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: inline-block;
+.date-picker-container {
+    padding-left: 32px;
+    padding-right: 32px;
     flex: 1 1 auto;
 }
 
-.date-picker-selector {
-    font-family: "montserrat-regular";
-    font-size: 8px;
+.date-picker-input {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    border-bottom: 2px solid #7F8082;
+    max-width: 180px;
+    transition: all 0.5s;
 }
 
+.date-picker-input:hover {
+    border-bottom: 2px solid #51A9FF;
+}
+
+.date-picker-input:hover .calendar {
+    fill: #51A9FF;
+}
+
+.date-picker-input:hover .date-picker {
+    color: #51A9FF;
+}
+
+.date-picker-input:focus-within .calendar {
+    fill: #51A9FF;
+}
+
+.date-picker-input:focus-within {
+    border-bottom: 2px solid #51A9FF;
+}
+
+.calendar {
+    flex: 1 1 auto;
+    width: 14px;
+    height: 14px;
+    max-width: 14px;
+    fill: #7F8082;
+    transition: all 0.5s;
+    margin-left: 4px;
+}
+
+.calendar:hover {
+    fill: #51A9FF;
+}
+
+.date-picker-title {
+    font-family: "montserrat-medium";
+    color: #7F8082;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.date-picker {
+    border-width: 0px;
+    font-family: "montserrat-regular";
+    color: #7F8082;
+    font-size: 12px;
+    padding-left: 8px;
+    transition: all 0.5s;
+    max-width: 104px;
+}
+
+.date-picker:focus {
+    outline: 0;
+    color: #51A9FF;
+}
+
+.react-datepicker {
+    border-width: 0px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+}
+
+/* @override */
+.react-datepicker__month-container {
+    font-family: "montserrat-regular";
+    font-size: 12px;
+}
+
+/* @override */
+.react-datepicker__header {
+    background-color: #51A9FF;
+}
+
+/* @override */
+.react-datepicker__current-month {
+    color: #FFFFFF;
+}
+
+/* @override */
+.react-datepicker__day-name {
+    color: #FFFFFF;
+}
+
+/* @override */
+.react-datepicker__day--selected {
+    background-color: #51A9FF;
+}
+
+/* @override */
+.react-datepicker__triangle {
+    display: none;
+}
+
+/* @override */
+.react-datepicker__navigation--previous {
+    border-right-color: rgb(228, 227, 227);
+}
+
+/* @override */
+.react-datepicker__navigation--previous:hover  {
+    border-right-color: #FFFFFF;
+}
+
+/* @override */
+.react-datepicker__navigation--next {
+    border-left-color: rgb(228, 227, 227);
+}
+
+/* @override */
+.react-datepicker__navigation--next:hover {
+    border-left-color: #FFFFFF;
+}
+
+/* ========== Media Queries ========== */
 @media only screen and (max-width: 600px) {
 
     .header__text {
@@ -294,5 +441,13 @@
 
     .table-body-cell {
         font-size: 12px;
+    }
+
+    .table-cell {
+        flex: 0 0 120px;
+    }
+
+    .date-picker-container {
+        margin-bottom: 24px;
     }
 }

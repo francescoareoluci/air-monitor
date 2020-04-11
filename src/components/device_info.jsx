@@ -1,16 +1,12 @@
 import React from "react";
 import {
     Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
 } from 'react-accessible-accordion';
+
 import AccordionCard from "./accordion_card";
 import Map from "./map";
 import SummaryTable from "./summary_table";
-import DatePicker from "./date_picker";
-
+import DatePickerCustom from "./date_picker"
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -30,14 +26,14 @@ class DeviceInfo extends React.Component {
     renderDatePicker() {
         return (
             <div className="date-picker-wrapper">
-                <div className="picker-container">
-                    <DatePicker id="start-date-picker" title="Start Date" >
-                    </DatePicker>
-                </div>
-                <div className="picker-container">
-                    <DatePicker id="end-date-picker" title="End Date" >
-                    </DatePicker>
-                </div>
+                <DatePickerCustom
+                    title="Start Date"
+                >
+                </DatePickerCustom>
+                <DatePickerCustom
+                    title="End Date"
+                >
+                </DatePickerCustom>
             </div>
         );
     }

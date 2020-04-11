@@ -1,52 +1,43 @@
-import 'date-fns';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import React from "react";
+import DatePicker from "react-datepicker";
 
-
-class DatePicker extends React.Component {
+class DatePickerCustom extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          selectedDate: new Date()
+            selectedDate: new Date()
         }
 
         this.updateDate = this.updateDate.bind(this);
     }
 
     updateDate(date) {
-      this.setState({
-        selectedDate: date
-      })
+        this.setState({
+            selectedDate: date
+        });
     }
 
     render() {
         return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  //disableToolbar
-                  //variant="inline"
-                  format="dd/MM/yyyy"
-                  margin="normal"
-                  id={this.props.id}
-                  label={this.props.title}
-                  value={this.state.selectedDate}
-                  onChange={this.updateDate}
-                  
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
+            <div className="date-picker-container">
+                <div className="date-picker-title">
+                    {this.props.title}
+                </div>
+                <div className="date-picker-input">
+                    <DatePicker
+                        className="date-picker"
+                        selected={this.state.selectedDate}
+                        onChange={this.updateDate}
+                        maxDate={new Date()}
+                        dateFormat="dd/MM/yyyy"
+                    >
+                    </DatePicker>
+                    <svg className="calendar" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                </div>
+            </div>
         );
     }
 }
 
-export default DatePicker;
+export default DatePickerCustom;

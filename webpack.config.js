@@ -49,7 +49,7 @@ module.exports = {
   //},
   devServer: {
     contentBase: path.join(__dirname, "/public"),
-    host: '192.168.43.123',//your ip address
+    host: '192.168.43.123',
     port: 3000,
     disableHostCheck: true,
     hotOnly: true,

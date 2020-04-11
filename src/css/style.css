@@ -257,13 +257,14 @@
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 24px 16px;
+    padding: 24px;
 }
 
 .date-picker-container {
     padding-left: 32px;
-    padding-right: 32px;
+    padding-right: 0px;
     flex: 1 1 auto;
+    max-width: 220px;
 }
 
 .date-picker-input {
@@ -271,7 +272,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     border-bottom: 2px solid #7F8082;
-    max-width: 180px;
+    max-width: 200px;
     transition: all 0.5s;
 }
 
@@ -310,7 +311,7 @@
 }
 
 .date-picker-title {
-    font-family: "montserrat-medium";
+    font-family: "montserrat-semibold";
     color: #7F8082;
     font-size: 12px;
     margin-bottom: 8px;
@@ -318,12 +319,13 @@
 
 .date-picker {
     border-width: 0px;
-    font-family: "montserrat-regular";
+    font-family: "montserrat-medium";
     color: #7F8082;
     font-size: 12px;
     padding-left: 8px;
     transition: all 0.5s;
     max-width: 104px;
+    cursor: pointer;
 }
 
 .date-picker:focus {
@@ -449,5 +451,7 @@
 
     .date-picker-container {
         margin-bottom: 24px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }

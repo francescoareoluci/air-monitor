@@ -9,6 +9,7 @@ import CustomMap from "./leaflet_map";
 import SummaryTable from "./summary_table";
 import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
+import logo from "../../images/logo.svg"
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class DeviceInfo extends React.Component {
         return (
             <div className="home">
                 <div className="header">
+                    <img className="header-logo" src={logo} />
                     <div className="header__text">
                         <h2 onClick={this.goToHome}>
                             Air Monitor

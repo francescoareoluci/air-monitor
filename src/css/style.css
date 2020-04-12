@@ -46,6 +46,15 @@
     width: 100%;
     top: 0;
     z-index: 3;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.header-logo {
+    margin-left: 76px;
+    height: 32px;
+    flex: 0 0 auto;    
 }
 
 .header__text {
@@ -53,10 +62,11 @@
     font-size: 24px;
     font-family: "montserrat-regular";
     color: #FFFFFF;
-    padding-left: 96px;
+    padding-left: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
     cursor: pointer;
+    flex: 1 1 auto;
 }
 
 /* ======= Specific cards styling ======= */
@@ -493,9 +503,13 @@ body .leaflet-popup-content-wrapper {
 
     .header__text {
         font-size: 20px;
-        padding-left: 48px;
+        padding-left: 12px;
         padding-top: 12px;
         padding-bottom: 12px;
+    }
+
+    .header-logo {
+        margin-left: 32px;
     }
 
     .intro-card {
@@ -538,6 +552,8 @@ body .leaflet-popup-content-wrapper {
 
     .map-image__hover__text {
         font-size: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     .map-image {
@@ -569,6 +585,11 @@ body .leaflet-popup-content-wrapper {
 
     .data-plot-container {
         margin: 5px;
+    }
+
+    .device-selector-button {
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 }
 

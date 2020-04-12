@@ -17,11 +17,11 @@
 /* =============== Setting animations =============== */
 @keyframes hide-hover {
     0%   { opacity: 1; }
-    100% { opacity: 0; display: none; }
+    100% { opacity: 0; visibility: hidden; }
 }
 
 @keyframes show-hover {
-    0%   { opacity: 0; display:none; }
+    0%   { opacity: 0; visibility: hidden; }
     100% { opacity: 1; }
 }
 
@@ -412,6 +412,7 @@
     padding: 8px 16px;
     max-width: 160px;
     text-align: center;
+    border-bottom: 2px solid #E4F3FF;
 }
 
 .data-plot-type-select {
@@ -430,8 +431,8 @@
 
 .plot-selected {
     color: #51A9FF;
-    border-bottom: 2px solid #51A9FF;
-    color: #51A9FF;
+    border-bottom-color: #51A9FF;
+    transition: all 0.5s;
 }
 
 .data-plot-container {
@@ -443,11 +444,48 @@
 
 .plot-chart {
     /*width: 100%; */
-    height: 100%;
+    height: 360px;
 }
 
 .plot-card {
     padding-bottom: 20px;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 420px;
+    z-index: 1;
+}
+
+.device-selector-description {
+    margin: 4px;
+    color: #7F8082;
+}
+
+.device-selector-button {
+    background-color: #51A9FF;
+    font-family: "montserrat-regular";
+    color: #FFFFFF;
+    font-size: 12px;
+    border-radius: 4px;
+    border-width: 0px;
+    margin: 6px 6px;
+    padding: 4px;
+    width: 90%;
+    text-align: center;
+}
+
+/* @override */
+.leaflet-popup-tip-container {
+    display: none;
+}
+
+/* @override */
+body .leaflet-popup-content-wrapper {
+    border-radius: 4px;
+    font-family: "montserrat-regular";
+    font-size: 12px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
 }
 
 /* ========== Media Queries ========== */
@@ -541,5 +579,15 @@
 
     .data-plot-type-select {
         display: inline-block;
+    }
+
+    .plot-chart {
+        height: 320px;
+    }
+
+    .leaflet-container {
+        width: 100%;
+        height: 360px;
+        z-index: 1;
     }
 }

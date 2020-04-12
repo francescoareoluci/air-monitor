@@ -79,6 +79,7 @@ class DataPlot extends React.Component {
             <div className="plot-chart">
                 <ReactEcharts 
                     option={this.getOption()}  
+                    style={{ height: "100%" }}
                 />
             </div>
         );

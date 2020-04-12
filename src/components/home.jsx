@@ -1,6 +1,7 @@
 import React from "react";
 import mapImg from "../../images/gpsMap.png"
 import {withRouter} from 'react-router-dom'
+import CustomMap from "./leaflet_map";
 
 
 class Home extends React.Component {
@@ -36,8 +37,13 @@ class Home extends React.Component {
                     <h2 className="card-title">
                         Devices
                     </h2>
-                    <div className="map-image-wrapper" onClick={this.goToDevInfo}>
-                        <img className="map-image" src={mapImg} />
+                    <div className="map-image-wrapper">
+                        <CustomMap
+                            zoom={6}
+                            clickOnDev={this.goToDevInfo}
+                            showPopup="true"
+                        >    
+                        </CustomMap>
                         <div className="map-image__hover">
                             <h2 className="map-image__hover__text">
                                 Click on a device on map to begin

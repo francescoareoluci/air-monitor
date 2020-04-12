@@ -5,6 +5,7 @@ import {
 
 import AccordionCard from "./accordion_card";
 import Map from "./map";
+import CustomMap from "./leaflet_map";
 import SummaryTable from "./summary_table";
 import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
@@ -68,7 +69,7 @@ class DeviceInfo extends React.Component {
                     <AccordionCard 
                         uuid="collapsable-card-1" 
                         headerTitle="Device Position" 
-                        content={<Map></Map>}
+                        content={<CustomMap zoom={17}></CustomMap>}
                     >
                     </AccordionCard>
 

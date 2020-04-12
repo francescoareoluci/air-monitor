@@ -421,11 +421,14 @@
 
 .data-plot-container {
     margin: 4px 16px;
+    padding: 12px;
     background-color: #FFFFFF;
+    border-radius: 4px;
 }
 
 .plot-chart {
-    width: 100%;
+    /*width: 100%; */
+    height: 100%;
 }
 
 .plot-card {
@@ -444,6 +447,7 @@
 
     .intro-card {
         margin-top: 64px;
+        max-width: 90%;
     }
 
     .intro-card__title {
@@ -457,10 +461,18 @@
 
     .home-map-card {
         margin-top: 64px;
+        max-width: 90%;
+    }
+
+    .dev-name-card {
+        margin-top: 64px;
+        padding: 16px 20px;
+        max-width: 90%;
     }
 
     .collapsable-card {
         margin-top: 64px;
+        max-width: 90%;
     }
 
     .card-title {
@@ -479,11 +491,6 @@
         height: 320px;
     }
 
-    .dev-name-card {
-        margin-top: 64px;
-        padding: 16px 20px;
-    }
-
     .table-body-cell {
         font-size: 12px;
     }
@@ -496,5 +503,13 @@
         margin-bottom: 24px;
         padding-left: 8px;
         padding-right: 8px;
+    }
+
+    .data-plot-wrapper {
+        margin: 5px;
+    }
+
+    .data-plot-container {
+        margin: 5px;
     }
 }

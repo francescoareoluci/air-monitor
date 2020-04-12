@@ -1,7 +1,7 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
-const date = ["2020/01/01", "2020/01/02", "2020/01/03", "2020/01/04"];
+const date = ["01/01/20", "02/01/20", "03/01/20", "04/01/20"];
 const temps = [12, 13, 14, 15];
 
 class DataPlot extends React.Component {
@@ -36,7 +36,10 @@ class DataPlot extends React.Component {
                     lineStyle: {
                         color: '#7F8082'
                     }
-                }
+                },
+                axisLabel: {
+                    rotate: 60
+                },
             },
             yAxis: {
                 type: 'value',
@@ -48,7 +51,7 @@ class DataPlot extends React.Component {
                     lineStyle: {
                         color: '#7F8082'
                     }
-                }
+                },
             },
             series: [
                 {
@@ -63,7 +66,11 @@ class DataPlot extends React.Component {
                     },
                     color: '#51A9FF'
                 }
-            ]
+            ],
+            textStyle: {
+                fontFamily: "montserrat-regular",
+                fontSize: 10
+            }
         };
     }
     

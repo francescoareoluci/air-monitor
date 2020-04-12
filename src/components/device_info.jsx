@@ -6,7 +6,8 @@ import {
 import AccordionCard from "./accordion_card";
 import Map from "./map";
 import SummaryTable from "./summary_table";
-import DatePickerCustom from "./date_picker"
+import DatePickerCustom from "./date_picker";
+import DataPlotWrapper from "./data-plot-wrapper";
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -25,15 +26,19 @@ class DeviceInfo extends React.Component {
 
     renderDatePicker() {
         return (
-            <div className="date-picker-wrapper">
-                <DatePickerCustom
-                    title="Start Date"
-                >
-                </DatePickerCustom>
-                <DatePickerCustom
-                    title="End Date"
-                >
-                </DatePickerCustom>
+            <div className="plot-card">
+                <div className="date-picker-wrapper">
+                    <DatePickerCustom
+                        title="Start Date"
+                    >
+                    </DatePickerCustom>
+                    <DatePickerCustom
+                        title="End Date"
+                    >
+                    </DatePickerCustom>
+                </div>
+                <DataPlotWrapper>
+                </DataPlotWrapper>
             </div>
         );
     }

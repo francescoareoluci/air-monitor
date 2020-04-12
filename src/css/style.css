@@ -389,6 +389,49 @@
     border-left-color: #FFFFFF;
 }
 
+/* ======== Data Plot styling ========= */
+.data-plot-wrapper {
+    margin: 12px 32px;
+    padding-bottom: 10px;
+    background-color: #E4F3FF;
+}
+
+.data-plot-types {
+    padding: 16px 20px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.plot-type {
+    flex: 1 1 auto;
+    flex-direction: row;
+    font-family: "montserrat-semibold";
+    font-size: 12px;
+    color: #90969C;
+    padding: 8px 16px;
+    max-width: 160px;
+    text-align: center;
+}
+
+.plot-selected {
+    color: #51A9FF;
+    border-bottom: 2px solid #51A9FF;
+    color: #51A9FF;
+}
+
+.data-plot-container {
+    margin: 4px 16px;
+    background-color: #FFFFFF;
+}
+
+.plot-chart {
+    width: 100%;
+}
+
+.plot-card {
+    padding-bottom: 20px;
+}
+
 /* ========== Media Queries ========== */
 @media only screen and (max-width: 600px) {
 

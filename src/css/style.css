@@ -394,6 +394,7 @@
     margin: 12px 32px;
     padding-bottom: 10px;
     background-color: #E4F3FF;
+    border-radius: 4px;
 }
 
 .data-plot-types {
@@ -411,6 +412,20 @@
     padding: 8px 16px;
     max-width: 160px;
     text-align: center;
+}
+
+.data-plot-type-select {
+    width: 220px;
+    padding: 24px 20px; 
+    font-family: "montserrat-medium";
+    font-size: 12px;
+    color: #90969C;
+    display: none;
+}
+
+.data-plot-select-title {
+    padding: 4px;
+    font-family: "montserrat-semibold";
 }
 
 .plot-selected {
@@ -499,6 +514,11 @@
         flex: 0 0 120px;
     }
 
+    .date-picker-wrapper {
+        padding-top: 32px;
+        padding-bottom: 12px;
+    }
+
     .date-picker-container {
         margin-bottom: 24px;
         padding-left: 8px;
@@ -511,5 +531,15 @@
 
     .data-plot-container {
         margin: 5px;
+    }
+}
+
+@media only screen and (max-width: 825px) {
+    .data-plot-types {
+        display: none;
+    }
+
+    .data-plot-type-select {
+        display: inline-block;
     }
 }

@@ -17,15 +17,15 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.ttf$/,
         use: 
         [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
+              outputPath: './fonts',
+            },
           }
         ]
       },
@@ -35,7 +35,9 @@ module.exports = {
       },
     ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { 
+    extensions: ["*", ".js", ".jsx"] 
+  },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
@@ -48,7 +50,8 @@ module.exports = {
   //  hotOnly: true
   //},
   devServer: {
-    contentBase: path.join(__dirname, "/public"),
+    contentBase: path.join(__dirname, "dist/"),
+    publicPath: "/dist/",
     host: '192.168.43.123',
     port: 3000,
     disableHostCheck: true,

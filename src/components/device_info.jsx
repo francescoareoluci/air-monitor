@@ -4,12 +4,12 @@ import {
 } from 'react-accessible-accordion';
 
 import AccordionCard from "./accordion_card";
-import Map from "./map";
 import CustomMap from "./leaflet_map";
 import SummaryTable from "./summary_table";
 import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
-import logo from "../../images/logo.svg"
+import logo from "../images/logo.svg";
+
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class DeviceInfo extends React.Component {
 
     render() {
         return (
-            <div className="home">
+            <div className="root">
                 <div className="header">
                     <img className="header-logo" src={logo} />
                     <div className="header__text">

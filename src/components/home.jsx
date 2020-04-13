@@ -1,7 +1,5 @@
 import React from "react";
-import mapImg from "../../images/gpsMap.png"
-import logo from "../../images/logo.svg"
-import {withRouter} from 'react-router-dom'
+import logo from "../images/logo.svg";
 import CustomMap from "./leaflet_map";
 
 
@@ -18,7 +16,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="home">
+            <div className="root">
                 <div className="header">
                     <img className="header-logo" src={logo} />
                     <div className="header__text">

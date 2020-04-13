@@ -2,15 +2,18 @@
   "name": "air-monitor-frontend",
   "version": "1.0.0",
   "description": "",
+  "homepage": "http://francescoareoluci.github.io/air-monitor",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d build"
   },
   "author": "Francesco Areoluci",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "css-loader": "^3.5.2",
     "date-fns": "^2.12.0",
     "echarts": "^4.7.0",
     "echarts-for-react": "^2.0.15-beta.1",
@@ -25,6 +28,8 @@
     "react-select": "^3.1.0",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.5",
+    "style-loader": "^1.1.3",
+    "ttf-loader": "^1.0.2",
     "url-loader": "^4.0.0"
   },
   "devDependencies": {
@@ -36,10 +41,9 @@
     "babel-loader": "^8.0.6",
     "clean-css-cli": "^4.3.0",
     "concat": "^1.0.3",
-    "css-loader": "^3.4.2",
+    "gh-pages": "^2.2.0",
     "imagemin-cli": "^5.1.0",
     "react-hot-loader": "^4.12.19",
-    "style-loader": "^1.1.3",
     "uglify-js": "^3.8.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",

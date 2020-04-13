@@ -1,17 +1,17 @@
 /* =============== Importing fonts =============== */
 @font-face {
     font-family: "montserrat-regular";
-    src: url(../../fonts/montserrat/Montserrat-Regular.ttf);
+    src: url(../fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
     font-family: "montserrat-semibold";
-    src: url(../../fonts/montserrat/Montserrat-SemiBold.ttf);
+    src: url(../fonts/Montserrat-SemiBold.ttf);
 }
 
 @font-face {
     font-family: "montserrat-medium";
-    src: url(../../fonts/montserrat/Montserrat-Medium.ttf);
+    src: url(../fonts/Montserrat-Medium.ttf);
 }
 
 /* =============== Setting animations =============== */
@@ -31,7 +31,7 @@
 }
 
 /* =============== Setting styles =============== */
-.home {
+.root {
     background-color: #F8F8F8;
     padding-bottom: 40px;
     /* Added for compability with header positioning */

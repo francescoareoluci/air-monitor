@@ -3,14 +3,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   withRouter,
 } from "react-router-dom";
 import ScrollToTop from "./scroll_to_top";
 
 import Home from "../components/home"
 import DeviceInfo from "../components/device_info"
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
 
 const AnimatedSwitch = withRouter(({ location }) => (
   <TransitionGroup>

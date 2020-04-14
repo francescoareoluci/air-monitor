@@ -24,7 +24,7 @@ const AnimatedSwitch = withRouter(({ location }) => (
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/air-monitor">
       {/*
       <div>
         <nav>

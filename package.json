@@ -2,7 +2,7 @@
   "name": "air-monitor-frontend",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://francescoareoluci.github.io",
+  "homepage": "https://francescoareoluci.github.io/air-monitor/",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",

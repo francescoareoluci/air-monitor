@@ -40,7 +40,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    publicPath: "/air-monitor/",
     filename: "bundle.js"
   },
   //devServer: {
@@ -51,7 +51,7 @@ module.exports = {
   //},
   devServer: {
     contentBase: path.join(__dirname, "dist/"),
-    publicPath: "/dist/",
+    publicPath: "/air-monitor/",
     host: '192.168.43.123',
     port: 3000,
     disableHostCheck: true,

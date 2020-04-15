@@ -30,6 +30,16 @@
     100% { opacity: 1; }
 }
 
+@keyframes rotateUp {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-90deg); }
+}
+
+@keyframes rotateDown {
+    0% { transform: rotate(-90deg); }
+    100% { transform: rotate(0deg); }
+}
+
 /* =============== Setting styles =============== */
 .root {
     background-color: #F8F8F8;
@@ -127,15 +137,44 @@
     padding: 16px 40px;
 }
 
+.collapsable-card__header-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-color: rgb(190, 190, 190);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    cursor: pointer;
+}
+
 .collapsable-card__card-title {
     color: #51A9FF;
     font-size: 16px;
     font-family: "montserrat-semibold";
     padding: 16px 40px;
-    border-bottom-color: rgb(190, 190, 190);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    cursor: pointer;
+    flex: 1 1 auto;
+}
+
+.collapsable-card__card-expand-down {
+    height: 32px;
+    flex: 0 0 auto;
+    max-width: 80px;
+    margin-right: 32px;
+    animation: rotateDown 0.25s 1 normal forwards;
+}
+
+.collapsable-card__card-expand-up {
+    height: 32px;
+    flex: 0 0 auto;
+    max-width: 80px;
+    margin-right: 32px;
+    animation: rotateUp 0.25s 1 normal forwards;
+}
+
+/* @override */
+.accordion__heading {
+    transition: background-color 0.5s;
 }
 
 /* @override */

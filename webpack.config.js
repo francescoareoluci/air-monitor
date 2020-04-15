@@ -58,5 +58,10 @@ module.exports = {
     hotOnly: true,
     historyApiFallback: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+  optimization: {
+    minimize: true
+  }
 }

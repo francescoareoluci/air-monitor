@@ -6,9 +6,27 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 
+import expand from "../images/expand.svg";
+
 class AccordionCard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            rotationDeg: "0"
+        }
+
+        this.rotateElement = this.rotateElement.bind(this);
+    }
+
+    rotateElement() {
+        let newRotation = "0";
+        if (this.state.rotationDeg === "0") {
+            newRotation = "-90";
+        }
+
+        this.setState({
+            rotationDeg: newRotation
+        });
     }
 
     render() {
@@ -20,9 +38,14 @@ class AccordionCard extends React.Component {
             >
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    <h2 className="collapsable-card__card-title">
-                        {this.props.headerTitle}
-                    </h2>
+                    <div className="collapsable-card__header-wrapper" onClick={this.rotateElement}>
+                        <h2 className="collapsable-card__card-title">
+                            {this.props.headerTitle}
+                        </h2>
+                        <img 
+                            className={this.state.rotationDeg == "0" ? "collapsable-card__card-expand-down" : "collapsable-card__card-expand-up"} 
+                            src={expand} />
+                    </div>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>

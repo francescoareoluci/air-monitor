@@ -1,12 +1,32 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
+import { changeStartingDate } from "../js/actions/change_starting_date"
+import { changeEndingDate } from "../js/actions/change_ending_date"
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changeStartingDate: (date) => dispatch(changeStartingDate(date)),
+        changeEndingDate: (date) => dispatch(changeEndingDate(date))
+    };
+  }
+  
+const mapStateToProps = (state) => {
+    return { 
+        startingSelectedDate: state.startingSelectedDate,
+        endingSelectedDate: state.endingSelectedDate
+    };
+};
+    
 
 class DatePickerCustom extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: new Date()
+            startingSelectedDate: new Date(),
+            endingSelectedDate: new Date(),
         }
 
         this.updateDate = this.updateDate.bind(this);
@@ -14,9 +34,12 @@ class DatePickerCustom extends React.Component {
     }
 
     updateDate(date) {
-        this.setState({
-            selectedDate: date
-        });
+        if (this.props.isStartPicker) {
+            this.props.changeStartingDate(date);
+        }
+        else {
+            this.props.changeEndingDate(date);
+        }
     }
 
     handleDateChangeRaw(event) {
@@ -32,9 +55,10 @@ class DatePickerCustom extends React.Component {
                 <div className="date-picker-input">
                     <DatePicker
                         className="date-picker"
-                        selected={this.state.selectedDate}
+                        selected={this.props.isStartPicker ? this.props.startingSelectedDate : this.props.endingSelectedDate}
                         onChange={this.updateDate}
-                        maxDate={new Date()}
+                        minDate={this.props.isStartPicker ? new Date("2020", "01", "01") : this.props.startingSelectedDate}
+                        maxDate={this.props.isStartPicker ? this.props.endingSelectedDate : new Date()}
                         dateFormat="dd/MM/yyyy"
                         onChangeRaw={this.handleDateChangeRaw}
                     >
@@ -46,4 +70,10 @@ class DatePickerCustom extends React.Component {
     }
 }
 
-export default DatePickerCustom;
+DatePickerCustom.propTypes = {
+    startingSelectedDate: PropTypes.date,
+    endingSelectedDate: PropTypes.date,
+    isStartPicker: PropTypes.bool
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DatePickerCustom);

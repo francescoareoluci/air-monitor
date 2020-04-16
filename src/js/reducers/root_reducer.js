@@ -12,8 +12,8 @@ const initialState = {
         longitude: 0
     },
     summaryData: [],
-    startingDate: "",
-    endingDate: "",
+    startingSelectedDate: new Date(),
+    endingSelectedDate: new Date(),
     plotType: ""
 };
 
@@ -42,16 +42,14 @@ function rootReducer(state = initialState, action) {
         return newState;
     }
     else if (action.type == CHANGE_STARTING_DATE) {
-        // @TODO: add validation 
         const newState = Object.assign({}, state, {
-            startingDate: action.payload
+            startingSelectedDate: action.payload
         });
         return newState;
     }
     else if (action.type == CHANGE_ENDING_DATE) {
-        // @TODO: add validation 
         const newState = Object.assign({}, state, {
-            endingDate: action.payload
+            endingSelectedDate: action.payload
         });
         return newState;
     }

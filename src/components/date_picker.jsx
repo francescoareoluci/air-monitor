@@ -23,7 +23,6 @@ class DatePickerCustom extends React.Component {
         event.preventDefault();
     }
       
-
     render() {
         return (
             <div className="date-picker-container">

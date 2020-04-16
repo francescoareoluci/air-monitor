@@ -41,7 +41,7 @@
 }
 
 /* =============== Setting styles =============== */
-.root {
+.page-root {
     background-color: #F8F8F8;
     padding-bottom: 40px;
     /* Added for compability with header positioning */
@@ -512,6 +512,7 @@
     padding: 4px;
     width: 90%;
     text-align: center;
+    cursor: pointer;
 }
 
 /* ======= Map styling ======= */

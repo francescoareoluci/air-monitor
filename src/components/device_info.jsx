@@ -15,7 +15,7 @@ class DeviceInfo extends React.Component {
     constructor(props) {
         super(props);
 
-        this.goToHome = this.goToHome.bind(this)
+        this.goToHome = this.goToHome.bind(this);
     }
 
     goToHome() {
@@ -26,7 +26,7 @@ class DeviceInfo extends React.Component {
         return <SummaryTable></SummaryTable>;
     }
 
-    renderDatePicker() {
+    renderPlotCard() {
         return (
             <div className="plot-card">
                 <div className="date-picker-wrapper">
@@ -47,7 +47,7 @@ class DeviceInfo extends React.Component {
 
     render() {
         return (
-            <div className="root">
+            <div className="page-root">
                 <div className="header">
                     <img className="header-logo" src={logo} />
                     <div className="header__text">
@@ -85,7 +85,7 @@ class DeviceInfo extends React.Component {
                     <AccordionCard 
                         uuid="collapsable-card-3" 
                         headerTitle="Data Analysis" 
-                        content={this.renderDatePicker()}
+                        content={this.renderPlotCard()}
                     >
                     </AccordionCard>
 

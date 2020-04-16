@@ -1,18 +1,20 @@
-import { CHANGE_DEVICE } from "../constants/action-types";
+import { CHANGE_DEVICE } from "../constants/action_types";
 import { CHANGE_DEVICE_POSITION } from "../constants/action_types";
-import { CHANGE_SUMMARY_DATA } from "../constants/action-types";
-import { CHANGE_STARTING_DATE } from "../constants/action-types";
-import { CHANGE_ENDING_DATE } from "../constants/action-types";
+import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
+import { CHANGE_STARTING_DATE } from "../constants/action_types";
+import { CHANGE_ENDING_DATE } from "../constants/action_types";
+import { CHANGE_PLOT_TYPE } from "../constants/action_types";
 
 const initialState = {
-    deviceName = "",
-    devicePosition = {
-        latitude = 0,
-        longitude = 0
+    deviceName: "",
+    devicePosition: {
+        latitude: 0,
+        longitude: 0
     },
-    summaryData = [],
-    startingDate = "",
-    endingDate = ""
+    summaryData: [],
+    startingDate: "",
+    endingDate: "",
+    plotType: ""
 };
 
 function rootReducer(state = initialState, action) {
@@ -50,6 +52,13 @@ function rootReducer(state = initialState, action) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
             endingDate: action.payload
+        });
+        return newState;
+    }
+    else if (action.type == CHANGE_PLOT_TYPE) {
+        // @TODO: add validation 
+        const newState = Object.assign({}, state, {
+            plotType: action.payload
         });
         return newState;
     }

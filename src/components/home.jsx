@@ -16,7 +16,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="root">
+            <div className="page-root">
                 <div className="header">
                     <img className="header-logo" src={logo} />
                     <div className="header__text">

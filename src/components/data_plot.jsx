@@ -1,12 +1,32 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types"
 import ReactEcharts from "echarts-for-react";
 
-const date = ["01/01/20", "02/01/20", "03/01/20", "04/01/20"];
-const temps = [12, 13, 14, 15];
+const date = ["01/01/20", "02/01/20", "03/01/20", "04/01/20", "05/01/20", "06/01/20"];
+const plotTypes = {
+    "temperature": [12, 13, 14, 15, 20, 22],
+    "pm25"       : [20, 22, 54, 32, 32, 43],
+    "pm10"       : [90, 89, 56, 72, 80, 74],
+    "co2"        : [23, 23, 56, 43, 32, 45],
+    "rad"        : [12, 20, 32, 24, 18, 15],
+    "ds18"       : [43, 12, 78, 32, 40, 43],
+    "voc"        : [45, 40, 56, 50, 37, 45],
+    "no3"        : [32, 54, 32, 34, 40, 36],
+};
+
+const mapStateToProps = (state) => {
+    return { 
+        plotType: state.plotType,
+    };
+};
 
 class DataPlot extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            displayedValues: []
+        }
     }
 
     getOption() {
@@ -57,7 +77,7 @@ class DataPlot extends React.Component {
                 {
                     name: 'Day Temp',
                     type: 'line',
-                    data: temps,
+                    data: plotTypes[this.props.plotType],
                     markLine: {
                         data: [
                             {type: 'average', name: 'avg'}
@@ -86,4 +106,8 @@ class DataPlot extends React.Component {
     }
 }
 
-export default DataPlot;
+DataPlot.propTypes = {
+    plotType: PropTypes.string,
+}
+
+export default connect(mapStateToProps)(DataPlot);

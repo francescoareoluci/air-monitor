@@ -31,12 +31,10 @@ class DeviceInfo extends React.Component {
             <div className="plot-card">
                 <div className="date-picker-wrapper">
                     <DatePickerCustom
-                        title="Start Date"
                         isStartPicker={true}
                     >
                     </DatePickerCustom>
                     <DatePickerCustom
-                        title="End Date"
                         isStartPicker={false}
                     >
                     </DatePickerCustom>

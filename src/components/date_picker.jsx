@@ -10,7 +10,7 @@ function mapDispatchToProps(dispatch) {
         changeStartingDate: (date) => dispatch(changeStartingDate(date)),
         changeEndingDate: (date) => dispatch(changeEndingDate(date))
     };
-  }
+}
   
 const mapStateToProps = (state) => {
     return { 
@@ -50,14 +50,14 @@ class DatePickerCustom extends React.Component {
         return (
             <div className="date-picker-container">
                 <div className="date-picker-title">
-                    {this.props.title}
+                    {this.props.isStartPicker ? "Start Date" : "End Date"}
                 </div>
                 <div className="date-picker-input">
                     <DatePicker
                         className="date-picker"
                         selected={this.props.isStartPicker ? this.props.startingSelectedDate : this.props.endingSelectedDate}
                         onChange={this.updateDate}
-                        minDate={this.props.isStartPicker ? new Date("2020", "01", "01") : this.props.startingSelectedDate}
+                        minDate={this.props.isStartPicker ? new Date("2020", "00", "01") : this.props.startingSelectedDate}
                         maxDate={this.props.isStartPicker ? this.props.endingSelectedDate : new Date()}
                         dateFormat="dd/MM/yyyy"
                         onChangeRaw={this.handleDateChangeRaw}

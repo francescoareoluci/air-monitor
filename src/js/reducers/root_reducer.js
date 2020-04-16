@@ -14,7 +14,7 @@ const initialState = {
     summaryData: [],
     startingSelectedDate: new Date(),
     endingSelectedDate: new Date(),
-    plotType: ""
+    plotType: "temperature"
 };
 
 function rootReducer(state = initialState, action) {

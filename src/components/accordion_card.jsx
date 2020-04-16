@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
     AccordionItem,
     AccordionItemHeading,
@@ -54,6 +55,12 @@ class AccordionCard extends React.Component {
             </AccordionItem>
         );
     }
+}
+
+AccordionCard.propTypes = {
+    uuid: PropTypes.string,
+    headerTitle: PropTypes.string,
+    content: PropTypes.func
 }
 
 export default AccordionCard;

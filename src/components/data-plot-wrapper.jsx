@@ -1,6 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types"
+import { changePlotType } from "../js/actions/change_plot_type"
 import DataPlot from "./data_plot";
 import Select from 'react-select';
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changePlotType: (value) => dispatch(changePlotType(value))
+    };
+}
+
+const mapStateToProps = (state) => {
+    return { 
+        plotType: state.plotType,
+    };
+};
 
 const plotTypes = [
     {value: "temperature", label:"Temperature"},
@@ -16,17 +31,23 @@ const plotTypes = [
 class DataPlotWrapper extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedType: plotTypes[0].value
-        }
 
         this.updateTypeSelection = this.updateTypeSelection.bind(this);
+        this.getIndexById = this.getIndexById.bind(this);
     }
 
-    updateTypeSelection(id) {
-        this.setState({
-            selectedType: id
-        });
+    updateTypeSelection(type) {
+        this.props.changePlotType(type.value);
+    }
+
+    getIndexById(id) {
+        for (let i = 0; i < plotTypes.length; i += 1) {
+            if (id == plotTypes[i].value) {
+                return i;
+            }
+        }
+        // Fallback
+        return 0;   
     }
 
     render() {
@@ -36,8 +57,8 @@ class DataPlotWrapper extends React.Component {
                     {plotTypes.map((type) => (
                         <h2 
                             key={type.value}
-                            className={this.state.selectedType == type.value ? "plot-type plot-selected" : "plot-type"} 
-                            onClick={() => this.updateTypeSelection(type.value)}>
+                            className={this.props.plotType == type.value ? "plot-type plot-selected" : "plot-type"} 
+                            onClick={() => this.updateTypeSelection(type)}>
                             {type.label}
                         </h2>
                     ))}
@@ -48,9 +69,10 @@ class DataPlotWrapper extends React.Component {
                     </h2>
                     <Select 
                         options={plotTypes}
-                        defaultValue={plotTypes[0]}
+                        defaultValue={plotTypes[this.getIndexById(this.props.plotType)]}
                         isSearchable="false"
                         className="data-plot-select"
+                        onChange={this.updateTypeSelection}
                         theme={(theme) => ({
                             ...theme,
                             colors: {
@@ -69,4 +91,8 @@ class DataPlotWrapper extends React.Component {
     }
 }
 
-export default DataPlotWrapper;
+DataPlotWrapper.propTypes = {
+    plotType: PropTypes.string,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataPlotWrapper);

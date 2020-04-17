@@ -15,6 +15,17 @@ const plotTypes = {
     "no3"        : [32, 54, 32, 34, 40, 36],
 };
 
+const plotLabels = {
+    "temperature": "Temperature (°C)",
+    "pm25"       : "PM2.5 (µg/m³)",
+    "pm10"       : "PM10 (µg/m³)",
+    "co2"        : "CO2 (ppm)",
+    "rad"        : "RAD",
+    "ds18"       : "DS18",
+    "voc"        : "VOC",
+    "no3"        : "NO3"
+};
+
 const mapStateToProps = (state) => {
     return { 
         plotType: state.plotType,
@@ -75,7 +86,7 @@ class DataPlot extends React.Component {
             },
             series: [
                 {
-                    name: 'Day Temp',
+                    name: plotLabels[this.props.plotType],
                     type: 'line',
                     data: plotTypes[this.props.plotType],
                     markLine: {

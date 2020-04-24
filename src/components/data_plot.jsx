@@ -3,18 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import ReactEcharts from "echarts-for-react";
 
-const date = ["01/01/20", "02/01/20", "03/01/20", "04/01/20", "05/01/20", "06/01/20"];
-const plotTypes = {
-    "temperature": [12, 13, 14, 15, 20, 22],
-    "pm25"       : [20, 22, 54, 32, 32, 43],
-    "pm10"       : [90, 89, 56, 72, 80, 74],
-    "co2"        : [23, 23, 56, 43, 32, 45],
-    "rad"        : [12, 20, 32, 24, 18, 15],
-    "ds18"       : [43, 12, 78, 32, 40, 43],
-    "voc"        : [45, 40, 56, 50, 37, 45],
-    "no3"        : [32, 54, 32, 34, 40, 36],
-};
-
 const plotLabels = {
     "temperature": "Temperature (°C)",
     "pm25"       : "PM2.5 (µg/m³)",
@@ -29,6 +17,7 @@ const plotLabels = {
 const mapStateToProps = (state) => {
     return { 
         plotType: state.plotType,
+        dataPlot: state.dataPlot
     };
 };
 
@@ -62,7 +51,7 @@ class DataPlot extends React.Component {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: date,
+                data: this.props.dataPlot.date,
                 axisLine: {
                     lineStyle: {
                         color: '#7F8082'
@@ -88,7 +77,7 @@ class DataPlot extends React.Component {
                 {
                     name: plotLabels[this.props.plotType],
                     type: 'line',
-                    data: plotTypes[this.props.plotType],
+                    data: this.props.dataPlot.plotTypes[this.props.plotType],
                     markLine: {
                         data: [
                             {type: 'average', name: 'avg'}

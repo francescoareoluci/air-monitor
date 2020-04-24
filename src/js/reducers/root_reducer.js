@@ -4,6 +4,8 @@ import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
 import { CHANGE_STARTING_DATE } from "../constants/action_types";
 import { CHANGE_ENDING_DATE } from "../constants/action_types";
 import { CHANGE_PLOT_TYPE } from "../constants/action_types";
+import { CHANGE_DATA_PLOT } from "../constants/action_types";
+import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
 
 const initialState = {
     deviceName: "",
@@ -14,7 +16,9 @@ const initialState = {
     summaryData: [],
     startingSelectedDate: new Date(),
     endingSelectedDate: new Date(),
-    plotType: "temperature"
+    plotType: "temperature",
+    dataPlot: {},
+    isDataPlotLoading: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -59,6 +63,21 @@ function rootReducer(state = initialState, action) {
             plotType: action.payload
         });
         return newState;
+    }
+    else if (action.type == CHANGE_DATA_PLOT) {
+        // @TODO: add validation 
+        const newState = Object.assign({}, state, {
+            dataPlot: action.payload,
+            isDataPlotLoading: false
+        });
+        return newState; 
+    }
+    else if (action.type == CHANGE_DATA_PLOT_LOADING) {
+        // @TODO: add validation 
+        const newState = Object.assign({}, state, {
+            isDataPlotLoading: action.payload
+        });
+        return newState; 
     }
 
     return state;

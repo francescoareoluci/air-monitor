@@ -1,19 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types"
-import { changePlotType } from "../js/actions/change_plot_type"
+import PropTypes from "prop-types";
+import { changePlotType } from "../js/actions/change_plot_type";
+import { changeDataPlot } from "../js/actions/change_data_plot";
+import { changeDataPlotLoading } from "../js/actions/change_data_plot_loading";
 import DataPlot from "./data_plot";
 import Select from 'react-select';
 
 function mapDispatchToProps(dispatch) {
     return {
-        changePlotType: (value) => dispatch(changePlotType(value))
+        changePlotType: (value) => dispatch(changePlotType(value)),
+        changeDataPlot: (startDate, endDate) => dispatch(changeDataPlot(startDate, endDate)),
+        changeDataPlotLoading: (isDataPlotLoading) => dispatch(changeDataPlotLoading(isDataPlotLoading))
     };
 }
 
 const mapStateToProps = (state) => {
     return { 
         plotType: state.plotType,
+        startingSelectedDate: state.startingSelectedDate,
+        endingSelectedDate: state.endingSelectedDate,
+        dataPlot: state.dataPlot,
+        isDataPlotLoading: state.isDataPlotLoading
     };
 };
 
@@ -31,6 +39,9 @@ const plotTypes = [
 class DataPlotWrapper extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isDataAvailable: false,
+        }
 
         this.updateTypeSelection = this.updateTypeSelection.bind(this);
         this.getIndexById = this.getIndexById.bind(this);
@@ -48,6 +59,25 @@ class DataPlotWrapper extends React.Component {
         }
         // Fallback
         return 0;   
+    }
+
+    componentWillMount() {
+        this.props.changeDataPlotLoading(true);
+        this.props.changeDataPlot(this.props.startingSelectedDate, this.props.endingSelectedDate);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if ((nextProps.startingSelectedDate !== this.props.startingSelectedDate) ||
+            (nextProps.endingSelectedDate !== this.props.endingSelectedDate)) {
+                this.props.changeDataPlotLoading(true);
+                this.props.changeDataPlot(nextProps.startingSelectedDate, nextProps.endingSelectedDate);
+        }
+        if (nextProps.dataPlot !== this.props.dataPlot) {
+            let dataAvailable = nextProps.dataPlot.date.length == 0 ? false : true;
+            this.setState({
+                isDataAvailable: dataAvailable
+            })
+        }
     }
 
     render() {
@@ -84,7 +114,23 @@ class DataPlotWrapper extends React.Component {
                     />
                 </div>
                 <div className="data-plot-container">
-                    <DataPlot></DataPlot>
+                    {this.props.isDataPlotLoading &&
+                        <div className="lds-ring-wrapper">
+                            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                    }
+                    {!this.props.isDataPlotLoading && !this.state.isDataAvailable &&
+                        <div className="data-plot-not-available">
+                            <h2 className="data-plot-not-available-label">
+                                Data not available for the selected days.
+                                Please change the date.
+                            </h2>
+                        </div>
+                    }
+                    {!this.props.isDataPlotLoading && this.state.isDataAvailable &&
+                        <DataPlot>
+                        </DataPlot>
+                    }
                 </div>
             </div>
         );

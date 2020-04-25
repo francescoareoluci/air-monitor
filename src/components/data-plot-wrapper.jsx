@@ -70,7 +70,10 @@ class DataPlotWrapper extends React.Component {
         if ((nextProps.startingSelectedDate !== this.props.startingSelectedDate) ||
             (nextProps.endingSelectedDate !== this.props.endingSelectedDate)) {
                 this.props.changeDataPlotLoading(true);
-                this.props.changeDataPlot(nextProps.startingSelectedDate, nextProps.endingSelectedDate);
+                setTimeout(() => {
+                    this.props.changeDataPlot(nextProps.startingSelectedDate, nextProps.endingSelectedDate);
+                  }, 2000);
+                //this.props.changeDataPlot(nextProps.startingSelectedDate, nextProps.endingSelectedDate);
         }
         if (nextProps.dataPlot !== this.props.dataPlot) {
             let dataAvailable = nextProps.dataPlot.date.length == 0 ? false : true;

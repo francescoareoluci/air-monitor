@@ -8,8 +8,13 @@ import CustomMap from "./leaflet_map";
 import SummaryTable from "./summary_table";
 import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
-import logo from "../images/logo.svg";
+import backHome from "../images/backHome.svg";
 
+const mapStateToProps = (state) => {
+    return { 
+        isDeviceLoading: state.isDeviceLoading
+    };
+};
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -49,24 +54,33 @@ class DeviceInfo extends React.Component {
         return (
             <div className="page-root">
                 <div className="header">
-                    <img className="header-logo" src={logo} />
+                    <img 
+                        className="header-logo-back"
+                        src={backHome} 
+                        onClick={this.goToHome} />
                     <div className="header__text">
                         <h2 onClick={this.goToHome}>
                             Air Monitor
                         </h2>
                     </div>
                 </div>
+                {this.props.isDeviceLoading &&
+                    <div className="dev-loading">
+                    </div>
+                }
+                {!this.props.isDeviceLoading && 
                 <div className="dev-name-card">
                     <h2 className="dev-name-card__device-name-text">Device Name</h2>
                     <h2 className="dev-name-card__device-name">SMART09</h2>
                 </div>
-
+                }
+                {!this.props.isDeviceLoading && 
                 <Accordion 
-                    allowMultipleExpanded="true" 
-                    allowZeroExpanded="true"
-                    preExpanded={['collapsable-card-1',
-                                    'collapsable-card-2',
-                                    'collapsable-card-3']}
+                allowMultipleExpanded="true" 
+                allowZeroExpanded="true"
+                preExpanded={['collapsable-card-1',
+                                'collapsable-card-2',
+                                'collapsable-card-3']}
                 >
                     <AccordionCard 
                         uuid="collapsable-card-1" 
@@ -74,25 +88,25 @@ class DeviceInfo extends React.Component {
                         content={<CustomMap zoom={17}></CustomMap>}
                     >
                     </AccordionCard>
-
+            
                     <AccordionCard 
                         uuid="collapsable-card-2" 
                         headerTitle="Data Summary" 
                         content={this.renderTable()}
                     >
                     </AccordionCard>
-
+        
                     <AccordionCard 
                         uuid="collapsable-card-3" 
                         headerTitle="Data Analysis" 
                         content={this.renderPlotCard()}
                     >
                     </AccordionCard>
-
                 </Accordion>
+                }
             </div>
         );
     }
 }
 
-export default DeviceInfo;
+export default connect(mapStateToProps)(DeviceInfo);

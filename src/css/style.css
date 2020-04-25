@@ -67,6 +67,14 @@
     flex: 0 0 auto;    
 }
 
+.header-logo-back {
+    margin-left: 76px;
+    height: 32px;
+    flex: 0 0 auto;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
 .header__text {
     display: inline-block;
     font-size: 24px;
@@ -573,6 +581,10 @@ body .leaflet-popup-content-wrapper {
     }
 
     .header-logo {
+        margin-left: 32px;
+    }
+
+    .header-logo-back {
         margin-left: 32px;
     }
 

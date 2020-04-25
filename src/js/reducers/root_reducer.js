@@ -6,6 +6,7 @@ import { CHANGE_ENDING_DATE } from "../constants/action_types";
 import { CHANGE_PLOT_TYPE } from "../constants/action_types";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
+import { CHANGE_DEVCE_LOADING } from "../constants/action_types";
 
 const initialState = {
     deviceName: "",
@@ -18,7 +19,8 @@ const initialState = {
     endingSelectedDate: new Date(),
     plotType: "temperature",
     dataPlot: {},
-    isDataPlotLoading: false
+    isDataPlotLoading: false,
+    isDeviceLoading: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -76,6 +78,12 @@ function rootReducer(state = initialState, action) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
             isDataPlotLoading: action.payload
+        });
+        return newState; 
+    }
+    else if (action.type == CHANGE_DEVCE_LOADING) {
+        const newState = Object.assign({}, state, {
+            isDeviceLoading: action.payload
         });
         return newState; 
     }

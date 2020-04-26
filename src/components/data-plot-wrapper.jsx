@@ -142,6 +142,10 @@ class DataPlotWrapper extends React.Component {
 
 DataPlotWrapper.propTypes = {
     plotType: PropTypes.string,
+    startingSelectedDate: PropTypes.instanceOf(Date),
+    endingSelectedDate: PropTypes.instanceOf(Date),
+    dataPlot: PropTypes.array,
+    isDataPlotLoading: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataPlotWrapper);

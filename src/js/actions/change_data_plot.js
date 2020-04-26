@@ -44,13 +44,13 @@ export function changeDataPlot(startDate, endDate) {
 
     const diffTime = Math.abs(endDate - startDate);
     const dateDiffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    console.log(dateDiffDays);
+    //console.log(dateDiffDays);
 
     let start = formatDate(startDate);
     let end = formatDate(endDate);
 
     let days = getDates(startDate, endDate);
-    console.log(days);
+    //console.log(days);
 
     let temperatures = generateData(dateDiffDays);
     let pm25Arr = generateData(dateDiffDays);

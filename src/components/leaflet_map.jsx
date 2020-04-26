@@ -20,13 +20,8 @@ class CustomMap extends React.Component {
             lat: 43.788113,
             lng: 11.2242957,
           }
-
-          this.log = this.log.bind(this);
     }
 
-    log() {
-        console.log("ciao");
-    }
 
     render() {
         const position = [this.state.lat, this.state.lng];

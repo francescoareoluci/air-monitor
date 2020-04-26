@@ -1,7 +1,7 @@
 import React from "react";
-import {
-    Accordion,
-} from 'react-accessible-accordion';
+import { Accordion } from 'react-accessible-accordion';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 import AccordionCard from "./accordion_card";
 import CustomMap from "./leaflet_map";
@@ -107,6 +107,10 @@ class DeviceInfo extends React.Component {
             </div>
         );
     }
+}
+
+DeviceInfo.propTypes = {
+    isDeviceLoading: PropTypes.bool
 }
 
 export default connect(mapStateToProps)(DeviceInfo);

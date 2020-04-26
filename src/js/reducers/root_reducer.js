@@ -48,16 +48,20 @@ function rootReducer(state = initialState, action) {
         return newState;
     }
     else if (action.type == CHANGE_STARTING_DATE) {
-        const newState = Object.assign({}, state, {
-            startingSelectedDate: action.payload
-        });
-        return newState;
+        if (state.startingSelectedDate.getTime() !== action.payload.getTime()) {
+            const newState = Object.assign({}, state, {
+                startingSelectedDate: action.payload
+            });
+            return newState;
+        }
     }
     else if (action.type == CHANGE_ENDING_DATE) {
-        const newState = Object.assign({}, state, {
-            endingSelectedDate: action.payload
-        });
-        return newState;
+        if (state.endingSelectedDate.getTime() !== action.payload.getTime()) {
+            const newState = Object.assign({}, state, {
+                endingSelectedDate: action.payload
+            });
+            return newState;
+        }
     }
     else if (action.type == CHANGE_PLOT_TYPE) {
         // @TODO: add validation 

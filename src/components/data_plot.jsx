@@ -108,6 +108,7 @@ class DataPlot extends React.Component {
 
 DataPlot.propTypes = {
     plotType: PropTypes.string,
+    dataPlot: PropTypes.array
 }
 
 export default connect(mapStateToProps)(DataPlot);

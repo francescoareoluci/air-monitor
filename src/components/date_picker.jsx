@@ -24,10 +24,6 @@ class DatePickerCustom extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            startingSelectedDate: new Date(),
-            endingSelectedDate: new Date(),
-        }
 
         this.updateDate = this.updateDate.bind(this);
         this.handleDateChangeRaw = this.handleDateChangeRaw.bind(this);

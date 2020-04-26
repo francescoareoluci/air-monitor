@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Accordion } from 'react-accessible-accordion';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
@@ -9,6 +9,10 @@ import SummaryTable from "./summary_table";
 import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
 import backHome from "../images/backHome.svg";
+
+// @TODO: how to let it work with custom paths?
+//const DataPlotWrapper = React.lazy(() => import("./data-plot-wrapper"));
+//const DatePickerCustom = React.lazy(() => import("./date_picker"));
 
 const mapStateToProps = (state) => {
     return { 
@@ -44,8 +48,8 @@ class DeviceInfo extends React.Component {
                     >
                     </DatePickerCustom>
                 </div>
-                <DataPlotWrapper>
-                </DataPlotWrapper>
+                    <DataPlotWrapper>
+                    </DataPlotWrapper>
             </div>
         );
     }

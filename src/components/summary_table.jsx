@@ -59,9 +59,6 @@ class SummaryTable extends React.Component {
 
     decreasePage() {
         if (this.state.currentPage === 0) {
-            this.setState({
-                isPreviousScrollEnabled: false
-            })
             return;
         }
 
@@ -83,7 +80,9 @@ class SummaryTable extends React.Component {
     }
 
     render (){
-        const displayRows = rows.slice(displayableRows * this.state.currentPage, displayableRows * (this.state.currentPage + 1))
+        const dataPageStart = displayableRows * this.state.currentPage;
+        const dataPageEnd = displayableRows * (this.state.currentPage + 1);
+        const displayRows = rows.slice(dataPageStart, dataPageEnd);
 
         return (
             <div className="table-header">
@@ -154,12 +153,14 @@ class SummaryTable extends React.Component {
                             <div className="table-footer-cell">
                                 <img className="scroll-right" 
                                     src={this.state.isNextScrollEnabled ? scroll : scrollDisabled} 
-                                    onClick={this.increasePage} />
+                                    onClick={this.increasePage} 
+                                    alt="next-page" />
                             </div>
                             <div className="table-footer-cell">
                                 <img className="scroll-left" 
                                     src={this.state.isPreviousScrollEnabled ? scroll : scrollDisabled} 
-                                    onClick={this.decreasePage} />
+                                    onClick={this.decreasePage} 
+                                    alt="previous-page" />
                             </div>
                         </div>
                 </div>

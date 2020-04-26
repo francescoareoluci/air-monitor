@@ -18,7 +18,7 @@ class Home extends React.Component {
         return (
             <div className="page-root">
                 <div className="header">
-                    <img className="header-logo" src={logo} />
+                    <img className="header-logo" src={logo} alt="header-logo"/>
                     <div className="header__text">
                         <h2>
                             Air Monitor

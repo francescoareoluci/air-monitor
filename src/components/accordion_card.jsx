@@ -45,7 +45,8 @@ class AccordionCard extends React.Component {
                         </h2>
                         <img 
                             className={this.state.rotationDeg == "0" ? "collapsable-card__card-expand-down" : "collapsable-card__card-expand-up"} 
-                            src={expand} />
+                            src={expand} 
+                            alt="expander" />
                     </div>
                     </AccordionItemButton>
                 </AccordionItemHeading>

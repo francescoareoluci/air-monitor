@@ -319,14 +319,12 @@
 
 .scroll-left {
     transform: rotate(90deg);
-}
-
-.scroll-left svg {
-    fill: black;
+    cursor: pointer;
 }
 
 .scroll-right {
     transform: rotate(-90deg);
+    cursor: pointer;
 }
 
 /* ======= Date Picker styling ======= */

@@ -10,10 +10,6 @@ import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
 import backHome from "../images/backHome.svg";
 
-// @TODO: how to let it work with custom paths?
-//const DataPlotWrapper = React.lazy(() => import("./data-plot-wrapper"));
-//const DatePickerCustom = React.lazy(() => import("./date_picker"));
-
 const mapStateToProps = (state) => {
     return { 
         isDeviceLoading: state.isDeviceLoading
@@ -61,7 +57,8 @@ class DeviceInfo extends React.Component {
                     <img 
                         className="header-logo-back"
                         src={backHome} 
-                        onClick={this.goToHome} />
+                        onClick={this.goToHome} 
+                        alt="header-logo-back" />
                     <div className="header__text">
                         <h2 onClick={this.goToHome}>
                             Air Monitor

@@ -40,7 +40,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/air-monitor/",
+    publicPath: "/",
     filename: "bundle.js"
   },
   //devServer: {

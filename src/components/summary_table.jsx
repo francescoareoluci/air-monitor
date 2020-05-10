@@ -1,9 +1,12 @@
 import React from 'react';
 import scroll from '../images/expand.svg';
 import scrollDisabled from '../images/expandDisabled.svg';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import helpIcon from '../images/helpOutline.svg'
 
-function createData(date, temp, co2, rad, pm25) {
-    return { date, temp, co2, rad, pm25 };
+function createData(date, temp, co2, pm10, pm25) {
+    return { date, temp, co2, pm10, pm25 };
 }
   
 const rows = [
@@ -36,7 +39,8 @@ class SummaryTable extends React.Component {
         this.state = {
             isNextScrollEnabled: false,
             isPreviousScrollEnabled: false,
-            currentPage: 0
+            currentPage: 0,
+            isModalOpen: [false, false, false],
         };
 
         this.increasePage = this.increasePage.bind(this);
@@ -71,6 +75,18 @@ class SummaryTable extends React.Component {
         })
     }
 
+    onOpenModal(modalId) {
+        let newModalState = this.state.isModalOpen;
+        newModalState[modalId] = true;
+        this.setState({ isModalOpen: newModalState });
+    }
+     
+    onCloseModal(modalId) {
+        let newModalState = this.state.isModalOpen;
+        newModalState[modalId] = false;
+        this.setState({ isModalOpen: newModalState });
+    }
+
     componentDidMount() {
         const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < rows.length ? true : false;
 
@@ -98,20 +114,61 @@ class SummaryTable extends React.Component {
                                 Temperature
                             </h2>
                         </div>
+                        <Modal className="table-modal" open={this.state.isModalOpen[0]} onClose={() => this.onCloseModal(0)} center>
+                            <h2 className="modal-content">
+                            Carbon dioxide (CO2) is an important trace gas in Earth's atmosphere. 
+                            It is an integral part of the carbon cycle, a biogeochemical cycle in which carbon 
+                            is exchanged between the Earth's oceans, soil, rocks and the biosphere. 
+                            CO2 absorbs and emits infrared radiation and consequently is a greenhouse gas 
+                            that plays a significant role in influencing Earth's surface temperature through the greenhouse effect.
+                            </h2>
+                        </Modal>
                         <div className="table-cell">
-                            <h2 className="table-header-cell">
+                            <div className="table-header-cell clickable"
+                                onClick={() => this.onOpenModal(0)}>
+                                <h2 className="table-header-cell-text">
                                 CO2
-                            </h2>
+                                </h2>
+                                <img className="help-icon" src={helpIcon} />
+                            </div>
                         </div>
-                        <div className="table-cell">
-                            <h2 className="table-header-cell">
-                                RAD
+                        <Modal className="table-modal" open={this.state.isModalOpen[1]} onClose={() => this.onCloseModal(1)} center>
+                            <h2 className="modal-content">
+                            Particulates, also known as particulate matter (PM), are microscopic particles of solid or 
+                            liquid matter suspended in the air. Sources of particulate matter can be natural or anthropogenic.
+                            They have impacts on climate and precipitation that adversely affect human health, in ways additional 
+                            to direct inhalation. Types of atmospheric particles include suspended particulate matter, 
+                            thoracic and respirable particles, inhalable coarse particles, which are coarse particles 
+                            with a diameter between 2.5 and 10 micrometers (μm) (PM10), fine particles with a diameter of 2.5 μm or less (PM2.5).
                             </h2>
-                        </div>
+                        </Modal>
                         <div className="table-cell">
-                            <h2 className="table-header-cell">
+                            <div className="table-header-cell clickable"
+                                onClick={() => this.onOpenModal(1)}>
+                                <h2 className="table-header-cell-text">
+                                    PM10
+                                </h2>
+                                <img className="help-icon" src={helpIcon} />
+                            </div>
+                        </div>
+                        <Modal className="table-modal" open={this.state.isModalOpen[2]} onClose={() => this.onCloseModal(2)} center>
+                            <h2 className="modal-content">
+                            Particulates, also known as particulate matter (PM), are microscopic particles of solid or 
+                            liquid matter suspended in the air. Sources of particulate matter can be natural or anthropogenic.
+                            They have impacts on climate and precipitation that adversely affect human health, in ways additional 
+                            to direct inhalation. Types of atmospheric particles include suspended particulate matter, 
+                            thoracic and respirable particles, inhalable coarse particles, which are coarse particles 
+                            with a diameter between 2.5 and 10 micrometers (μm) (PM10), fine particles with a diameter of 2.5 μm or less (PM2.5).
+                            </h2>
+                        </Modal>
+                        <div className="table-cell">
+                            <div className="table-header-cell clickable"
+                                onClick={() => this.onOpenModal(2)}>
+                                <h2 className="table-header-cell-text">
                                 PM2.5
-                            </h2>
+                                </h2>
+                                <img className="help-icon" src={helpIcon} />
+                            </div>
                         </div>
                     </div>
                     <div className="table-body">
@@ -135,7 +192,7 @@ class SummaryTable extends React.Component {
                             </div>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
-                                    {row.rad}
+                                    {row.pm10}
                                 </h2>
                             </div>
                             <div className="table-cell">

@@ -310,6 +310,30 @@
     text-align: center;
 }
 
+.clickable {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    transition: color 0.5s;
+}
+
+.clickable:hover {
+    color: #51A9FF;
+}
+
+.table-header-cell-text {
+    flex: 0.5 0 auto;
+    text-align: right;
+}
+
+.help-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0.2 0 auto;
+}
+
 .table-body-cell {
     color: #90969C;
     font-size: 14px;
@@ -325,6 +349,32 @@
 .scroll-right {
     transform: rotate(-90deg);
     cursor: pointer;
+}
+
+.modal-content {
+    font-size: 14px;
+    font-family: "montserrat-medium";
+    color: #90969C;
+    margin: 20px;
+    line-height: 1.4;
+}
+
+.react-responsive-modal-modal {
+    max-width: 600px !important;
+    border-radius: 4px;
+}
+
+.react-responsive-modal-closeButton {
+    fill: #7F8082;
+    transition: fill 0.5s;
+}
+
+.react-responsive-modal-closeButton:hover {
+    fill: #51A9FF;
+}
+
+.react-responsive-modal-closeButton:focus {
+    outline: 0;
 }
 
 /* ======= Date Picker styling ======= */

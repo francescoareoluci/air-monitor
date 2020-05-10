@@ -39,10 +39,13 @@ class DataPlot extends React.Component {
                 show: true,
                 feature: {
                     dataZoom: {
-                        title: 'zoom',
+                        title: {
+                            zoom: 'Click to enable/disable zooming',
+                            back: 'Click to restore zooming'
+                        },
                         yAxisIndex: 'none'
                     },
-                    saveAsImage: {title: 'Download'}
+                    saveAsImage: {title: 'Click to download plot'}
                 },
                 iconStyle: {
                     borderColor: '#90969C'

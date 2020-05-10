@@ -8,6 +8,12 @@ import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
 import { CHANGE_DEVCE_LOADING } from "../constants/action_types";
 
+// @TODO: remove these lines once the 
+// application will get data from cloud
+let startDate = new Date();
+let tmpDate = startDate.getDate() - 7;
+startDate.setDate(tmpDate);
+
 const initialState = {
     deviceName: "",
     devicePosition: {
@@ -15,7 +21,7 @@ const initialState = {
         longitude: 0
     },
     summaryData: [],
-    startingSelectedDate: new Date(),
+    startingSelectedDate: startDate,
     endingSelectedDate: new Date(),
     plotType: "temperature",
     dataPlot: {},
@@ -25,7 +31,6 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
     
-    // @TODO: depending on action type, change state
     if (action.type == CHANGE_DEVICE) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {

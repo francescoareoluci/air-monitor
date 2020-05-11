@@ -38,3 +38,15 @@
         transform: rotate(360deg);
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .lds-ring {
+        width: 60px;
+        height: 60px;
+    }
+
+    .lds-ring div {
+        width: 44px;
+        height: 44px;
+    }
+}

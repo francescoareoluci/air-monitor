@@ -1,35 +1,31 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { changeSummaryData } from "../js/actions/change_summary_data";
+import { changeSummaryDataLoading } from "../js/actions/change_summary_data_loading";
+import { Modal } from 'react-responsive-modal';
 import scroll from '../images/expand.svg';
 import scrollDisabled from '../images/expandDisabled.svg';
 import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
 import helpIcon from '../images/helpOutline.svg'
 
-function createData(date, temp, co2, pm10, pm25) {
-    return { date, temp, co2, pm10, pm25 };
-}
-  
-const rows = [
-  createData('2020/02/07', 20, 6.0, 24, 4.0),
-  createData('2020/02/06', 23, 9.0, 37, 4.3),
-  createData('2020/02/05', 19, 16.0, 24, 6.0),
-  createData('2020/02/04', 22, 3.7, 67, 4.3),
-  createData('2020/02/02', 24, 16.0, 49, 3.9),
-  createData('2020/02/01', 20, 12.0, 40, 5.6),
-  createData('2020/01/30', 18, 5.3, 21, 4.4),
-  createData('2020/01/29', 25, 4.6, 32, 5.2),
-  createData('2020/01/28', 22, 13.0, 27, 3.2),
-  createData('2020/01/27', 21, 4.8, 60, 5.8),
-  createData('2020/01/26', 26, 11.3, 43, 4.2),
-  createData('2020/01/25', 18, 14.2, 52, 4.7),
-  createData('2020/01/24', 17, 11.2, 35, 3.8),
-  createData('2020/01/23', 20, 5.7, 45, 5.2),
-  createData('2020/01/22', 21, 14.1, 34, 5.9),
-  createData('2020/01/21', 23, 10.4, 56, 2.6),
-  createData('2020/01/20', 21, 4.6, 42, 3.4)
-];
 
 const displayableRows = 6;
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changeSummaryData: () => dispatch(changeSummaryData()),
+        changeSummaryDataLoading: (isLoading) => dispatch(changeSummaryDataLoading(isLoading))
+    };
+}
+
+
+const mapStateToProps = (state) => {
+    return { 
+        summaryData: state.summaryData,
+        isSummaryDataLoading: state.isSummaryDataLoading
+    };
+};
 
 
 class SummaryTable extends React.Component {
@@ -48,12 +44,12 @@ class SummaryTable extends React.Component {
     }
 
     increasePage() {
-        if (displayableRows * (this.state.currentPage + 1) > rows.length) {
+        if (displayableRows * (this.state.currentPage + 1) > this.props.summaryData.length) {
             return;
         }
 
         const nextPage = this.state.currentPage + 1;
-        const isNextPageAvailable = displayableRows * (nextPage + 1) > rows.length ? false : true
+        const isNextPageAvailable = displayableRows * (nextPage + 1) > this.props.summaryData.length ? false : true
         this.setState({
             currentPage: nextPage,
             isPreviousScrollEnabled: true,
@@ -71,7 +67,8 @@ class SummaryTable extends React.Component {
         this.setState({
             currentPage: nextPage,
             isPreviousScrollEnabled: previousPageAvailable,
-            isNextScrollEnabled: true
+            isNextScrollEnabled: true,
+            displayRows: []
         })
     }
 
@@ -87,21 +84,37 @@ class SummaryTable extends React.Component {
         this.setState({ isModalOpen: newModalState });
     }
 
-    componentDidMount() {
-        const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < rows.length ? true : false;
+    componentWillMount() {
+        this.props.changeSummaryDataLoading(true);
+        setTimeout(() => {
+            this.props.changeSummaryData();
+          }, 2000);
+    }
 
-        this.setState({
-            isNextScrollEnabled: isNextPageAvailable
-        });
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.summaryData !== this.props.summaryData) {
+            const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < nextProps.summaryData.length ? true : false;
+
+            this.setState({
+                isNextScrollEnabled: isNextPageAvailable
+            });
+        }
     }
 
     render (){
         const dataPageStart = displayableRows * this.state.currentPage;
         const dataPageEnd = displayableRows * (this.state.currentPage + 1);
-        const displayRows = rows.slice(dataPageStart, dataPageEnd);
+        const displayRows = this.props.summaryData.slice(dataPageStart, dataPageEnd);
 
         return (
             <div className="table-header">
+                <div className="table-container">
+                {this.props.isSummaryDataLoading &&
+                    <div className="lds-ring-wrapper">
+                        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                }
+                {!this.props.isSummaryDataLoading &&
                 <div className="table-wrapper">
                     <div className="table-row">
                         <div className="table-cell">
@@ -205,6 +218,8 @@ class SummaryTable extends React.Component {
                     ))}
                     </div>
                 </div>
+                }
+                {!this.props.isSummaryDataLoading &&
                 <div className="table-footer">
                         <div className="table-footer-row">
                             <div className="table-footer-cell">
@@ -221,9 +236,11 @@ class SummaryTable extends React.Component {
                             </div>
                         </div>
                 </div>
+                }
+            </div>
             </div>
         );
     }
 }
 
-export default SummaryTable;
+export default connect(mapStateToProps, mapDispatchToProps)(SummaryTable);

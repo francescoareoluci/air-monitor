@@ -1,4 +1,4 @@
-import { CHANGE_DEVICE } from "../constants/action_types";
+import { CHANGE_DEVICE, CHANGE_SUMMARY_DATA_LOADING } from "../constants/action_types";
 import { CHANGE_DEVICE_POSITION } from "../constants/action_types";
 import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
 import { CHANGE_STARTING_DATE } from "../constants/action_types";
@@ -26,11 +26,11 @@ const initialState = {
     plotType: "temperature",
     dataPlot: {},
     isDataPlotLoading: false,
-    isDeviceLoading: false
+    isDeviceLoading: false,
+    isSummaryDataLoading: false,
 };
 
 function rootReducer(state = initialState, action) {
-    
     if (action.type == CHANGE_DEVICE) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
@@ -48,7 +48,8 @@ function rootReducer(state = initialState, action) {
     else if (action.type == CHANGE_SUMMARY_DATA) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
-            summaryData: action.payload
+            summaryData: action.rows,
+            isSummaryDataLoading: false
         });
         return newState;
     }
@@ -93,6 +94,12 @@ function rootReducer(state = initialState, action) {
     else if (action.type == CHANGE_DEVCE_LOADING) {
         const newState = Object.assign({}, state, {
             isDeviceLoading: action.payload
+        });
+        return newState; 
+    }
+    else if (action.type == CHANGE_SUMMARY_DATA_LOADING) {
+        const newState = Object.assign({}, state, {
+            isSummaryDataLoading: action.isLoading
         });
         return newState; 
     }

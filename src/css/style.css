@@ -273,6 +273,11 @@
 }
 
 /* ======= Table styling ======= */
+.table-container {
+    position: relative;
+    min-height: 240px;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }

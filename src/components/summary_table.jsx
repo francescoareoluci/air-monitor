@@ -37,6 +37,7 @@ class SummaryTable extends React.Component {
             isPreviousScrollEnabled: false,
             currentPage: 0,
             isModalOpen: [false, false, false],
+            isSummaryDataAvailable: false
         };
 
         this.increasePage = this.increasePage.bind(this);
@@ -92,11 +93,14 @@ class SummaryTable extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
         if (nextProps.summaryData !== this.props.summaryData) {
             const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < nextProps.summaryData.length ? true : false;
+            let dataAvailable = nextProps.summaryData.length == 0 ? false : true;
 
             this.setState({
-                isNextScrollEnabled: isNextPageAvailable
+                isNextScrollEnabled: isNextPageAvailable,
+                isSummaryDataAvailable: dataAvailable
             });
         }
     }
@@ -105,6 +109,7 @@ class SummaryTable extends React.Component {
         const dataPageStart = displayableRows * this.state.currentPage;
         const dataPageEnd = displayableRows * (this.state.currentPage + 1);
         const displayRows = this.props.summaryData.slice(dataPageStart, dataPageEnd);
+        console.log(this.state.isSummaryDataAvailable);
 
         return (
             <div className="table-header">
@@ -114,7 +119,14 @@ class SummaryTable extends React.Component {
                         <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
                     </div>
                 }
-                {!this.props.isSummaryDataLoading &&
+                {!this.props.isSummaryDataLoading && !this.state.isSummaryDataAvailable &&
+                        <div className="data-not-available">
+                            <h2 className="data-not-available-label">
+                                Summary data not available for the selected device.
+                            </h2>
+                        </div>
+                }
+                {!this.props.isSummaryDataLoading && this.state.isSummaryDataAvailable &&
                 <div className="table-wrapper">
                     <div className="table-row">
                         <div className="table-cell">
@@ -219,7 +231,7 @@ class SummaryTable extends React.Component {
                     </div>
                 </div>
                 }
-                {!this.props.isSummaryDataLoading &&
+                {!this.props.isSummaryDataLoading && this.state.isSummaryDataAvailable &&
                 <div className="table-footer">
                         <div className="table-footer-row">
                             <div className="table-footer-cell">

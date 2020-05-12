@@ -123,8 +123,8 @@ class DataPlotWrapper extends React.Component {
                         </div>
                     }
                     {!this.props.isDataPlotLoading && !this.state.isDataAvailable &&
-                        <div className="data-plot-not-available">
-                            <h2 className="data-plot-not-available-label">
+                        <div className="data-not-available">
+                            <h2 className="data-not-available-label">
                                 Data not available for the selected days.
                                 Please change the date.
                             </h2>

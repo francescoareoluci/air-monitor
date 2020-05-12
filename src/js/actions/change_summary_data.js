@@ -5,7 +5,7 @@ function createData(date, temp, co2, pm10, pm25) {
 }
 
 export function changeSummaryData() {
-    let rows = [
+    const rows = [
         createData('2020/02/07', 20, 6.0, 24, 4.0),
         createData('2020/02/06', 23, 9.0, 37, 4.3),
         createData('2020/02/05', 19, 16.0, 24, 6.0),

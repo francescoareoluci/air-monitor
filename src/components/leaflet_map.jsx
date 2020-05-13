@@ -16,37 +16,77 @@ let DefaultIcon = L.icon({
 class CustomMap extends React.Component {
     constructor(props) {
         super(props);
+        // This state is used only to center the map 
+        // when no device are available.
+        // Should not occurr, it's a fallback
         this.state = {
             lat: 43.788113,
             lng: 11.2242957,
-          }
+        }
     }
 
+    isObjectEmpty(obj) {
+        for(let key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
     render() {
-        const position = [this.state.lat, this.state.lng];
-        return (
-            <Map center={position} zoom={this.props.zoom}>
-                <TileLayer
-                    url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                />
+        let position = [];
+        let deviceAvailable = false;
+        if (this.props.devices.length === 0) {
+            // Fallback
+            position = [this.state.lat, this.state.lng];
+        }
+        else {
+            if (!this.isObjectEmpty(this.props.devices[0])) {
+                // @TODO: is it ok to center on the first device?
+                position = [this.props.devices[0].latitude, this.props.devices[0].longitude]
+                deviceAvailable = true;
+            }
+            else {
+                // Fallback
+                position = [this.state.lat, this.state.lng];
+            }
+        }
 
-                <div className="popup-container">
-                <Marker position={position}>
-                    <Popup style="border-radius: 4px;">
-                            <div className="device-selector-description">
-                                <h2>Latitude: {this.state.lat}</h2>
-                                <h2>Longitude: {this.state.lng}</h2>
-                            </div>
-                            { this.props.showPopup &&   /* Render link to device page only on home page */
-                            <button className="device-selector-button" onClick={this.props.clickOnDev}>
-                                Go!
-                            </button>
-                            }
-                    </Popup>
-                </Marker>
-                </div>
-            </Map>
+        return (
+            <div className="map-wrapper">
+                {!deviceAvailable &&
+                    <div className="data-not-available">
+                        <h2 className="data-not-available-label">
+                            Summary data not available for the selected device.
+                        </h2>
+                    </div>
+                }
+                {deviceAvailable &&
+                    <Map center={position} zoom={this.props.zoom}>
+                        <TileLayer
+                            url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+        
+                        <div className="popup-container">
+                        {deviceAvailable && this.props.devices.map((device) => (
+                        <Marker position={[device.latitude, device.longitude]}>
+                            <Popup style="border-radius: 4px;">
+                                    <div className="device-selector-description">
+                                        <h2>Latitude: {device.latitude}</h2>
+                                        <h2>Longitude: {device.longitude}</h2>
+                                    </div>
+                                    { this.props.showPopup &&   /* Render link to device page only on home page */
+                                    <button className="device-selector-button" onClick={() => this.props.handleSelectedDevice(device)}>
+                                        Go!
+                                    </button>
+                                    }
+                            </Popup>
+                        </Marker>
+                        ))}
+                        </div>
+                    </Map>
+                }
+            </div>
         );
     }
 }

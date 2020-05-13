@@ -1,12 +1,12 @@
-import { CHANGE_DEVICE, CHANGE_SUMMARY_DATA_LOADING } from "../constants/action_types";
-import { CHANGE_DEVICE_POSITION } from "../constants/action_types";
+import { CHANGE_SELECTED_DEVICE, CHANGE_SUMMARY_DATA_LOADING } from "../constants/action_types";
+import { CHANGE_DEVICES } from "../constants/action_types";
 import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
 import { CHANGE_STARTING_DATE } from "../constants/action_types";
 import { CHANGE_ENDING_DATE } from "../constants/action_types";
 import { CHANGE_PLOT_TYPE } from "../constants/action_types";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
-import { CHANGE_DEVCE_LOADING } from "../constants/action_types";
+import { CHANGE_DEVICES_LOADING } from "../constants/action_types";
 
 // @TODO: remove these lines once the 
 // application will get data from cloud
@@ -15,33 +15,31 @@ let tmpDate = startDate.getDate() - 7;
 startDate.setDate(tmpDate);
 
 const initialState = {
-    deviceName: "",
-    devicePosition: {
-        latitude: 0,
-        longitude: 0
-    },
+    devices: [],
+    selectedDevice: {},
     summaryData: [],
     startingSelectedDate: startDate,
     endingSelectedDate: new Date(),
     plotType: "temperature",
     dataPlot: {},
     isDataPlotLoading: false,
-    isDeviceLoading: false,
+    areDeviceLoading: false,
     isSummaryDataLoading: false,
 };
 
 function rootReducer(state = initialState, action) {
-    if (action.type == CHANGE_DEVICE) {
+    if (action.type == CHANGE_SELECTED_DEVICE) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
-            deviceName: action.payload
+            selectedDevice: action.payload
         });
         return newState;
     }
-    else if (action.type == CHANGE_DEVICE_POSITION) {
+    else if (action.type == CHANGE_DEVICES) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
-            devicePosition: action.payload
+            devices: action.payload,
+            areDeviceLoading: false
         });
         return newState;
     }
@@ -91,9 +89,9 @@ function rootReducer(state = initialState, action) {
         });
         return newState; 
     }
-    else if (action.type == CHANGE_DEVCE_LOADING) {
+    else if (action.type == CHANGE_DEVICES_LOADING) {
         const newState = Object.assign({}, state, {
-            isDeviceLoading: action.payload
+            areDeviceLoading: action.payload
         });
         return newState; 
     }

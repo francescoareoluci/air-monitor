@@ -23,6 +23,6 @@ export function changeSummaryData() {
         createData('2020/01/22', 21, 14.1, 34, 5.9),
         createData('2020/01/21', 23, 10.4, 56, 2.6),
         createData('2020/01/20', 21, 4.6, 42, 3.4)
-      ];
+    ];
     return { type: CHANGE_SUMMARY_DATA, rows }
 };

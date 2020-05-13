@@ -1,17 +1,49 @@
 import React from "react";
+import { connect } from "react-redux";
+import { changeDevices } from "../js/actions/change_devices";
+import { changeDevicesLoading } from "../js/actions/change_devices_loading";
+import { changeSelectedDevice } from "../js/actions/change_selected_device";
 import logo from "../images/logo.svg";
 import CustomMap from "./leaflet_map";
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changeDevices: () => dispatch(changeDevices()),
+        changeDevicesLoading: (areLoading) => dispatch(changeDevicesLoading(areLoading)),
+        changeSelectedDevice: (device) => dispatch(changeSelectedDevice(device))
+    };
+}
+
+
+const mapStateToProps = (state) => {
+    return { 
+        devices: state.devices,
+        areDevicesLoading: state.areDevicesLoading,
+        selectedDevice: state.selectedDevice
+    };
+};
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.goToDevInfo = this.goToDevInfo.bind(this)
+        this.handleSelectedDevice = this.handleSelectedDevice.bind(this)
     }
 
-    goToDevInfo() {
-        this.props.history.push('/deviceInfo')
+    handleSelectedDevice(device) {
+        this.props.changeSelectedDevice(device);
+    }
+
+    componentWillMount() {
+        this.props.changeDevicesLoading(true);
+        this.props.changeDevices();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedDevice !== this.props.selectedDevice) {
+            this.props.history.push('/deviceInfo')
+        }
     }
 
     render() {
@@ -40,8 +72,9 @@ class Home extends React.Component {
                     <div className="map-image-wrapper">
                         <CustomMap
                             zoom={6}
-                            clickOnDev={this.goToDevInfo}
+                            handleSelectedDevice={this.handleSelectedDevice}
                             showPopup="true"
+                            devices={this.props.devices}
                         >    
                         </CustomMap>
                         <div className="map-image__hover">
@@ -56,4 +89,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -109,7 +109,7 @@ class SummaryTable extends React.Component {
         const dataPageStart = displayableRows * this.state.currentPage;
         const dataPageEnd = displayableRows * (this.state.currentPage + 1);
         const displayRows = this.props.summaryData.slice(dataPageStart, dataPageEnd);
-        console.log(this.state.isSummaryDataAvailable);
+        //console.log(this.state.isSummaryDataAvailable);
 
         return (
             <div className="table-header">

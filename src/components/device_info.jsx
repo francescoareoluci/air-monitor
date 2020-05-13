@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Accordion } from 'react-accessible-accordion';
 import { connect } from "react-redux";
+import { changeSelectedDevice } from "../js/actions/change_selected_device";
 import PropTypes from 'prop-types';
 
 import AccordionCard from "./accordion_card";
@@ -10,11 +11,21 @@ import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
 import backHome from "../images/backHome.svg";
 
+
+function mapDispatchToProps(dispatch) {
+    return {
+        changeSelectedDevice: (device) => dispatch(changeSelectedDevice(device))
+    };
+}
+
+
 const mapStateToProps = (state) => {
     return { 
-        isDeviceLoading: state.isDeviceLoading
+        isDeviceLoading: state.isDeviceLoading,
+        selectedDevice: state.selectedDevice
     };
 };
+
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -50,7 +61,45 @@ class DeviceInfo extends React.Component {
         );
     }
 
+    isObjectEmpty(obj) {
+        for(let key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
+    componentWillMount() {
+        if (this.isObjectEmpty(this.props.selectedDevice)) {
+            // Trying to get info from a previous save
+            const deviceName = localStorage.getItem('selectedDeviceName');
+            const deviceLatitude = localStorage.getItem('selectedDeviceLatitude');
+            const deviceLongitude = localStorage.getItem('selectedDeviceLongitude');
+            const selectedDevice = {
+                name: deviceName,
+                latitude: deviceLatitude,
+                longitude: deviceLongitude
+            };
+
+            if (this.isObjectEmpty(selectedDevice)) {
+                this.goToHome();
+            }
+            else {
+                this.props.changeSelectedDevice(selectedDevice);
+            }
+        }
+        else {
+            // Saving state in localstorage to avoid losing it on page refresh
+            localStorage.setItem('selectedDeviceName', this.props.selectedDevice.name);
+            localStorage.setItem('selectedDeviceLatitude', this.props.selectedDevice.latitude);
+            localStorage.setItem('selectedDeviceLongitude', this.props.selectedDevice.longitude);
+        }
+    }
+
     render() {
+        //console.log(this.props.selectedDevice);
+        //const isDeviceAvailable = !this.isObjectEmpty(this.props.selectedDevice);
+
         return (
             <div className="page-root">
                 <div className="header">
@@ -72,7 +121,7 @@ class DeviceInfo extends React.Component {
                 {!this.props.isDeviceLoading && 
                 <div className="dev-name-card">
                     <h2 className="dev-name-card__device-name-text">Device Name</h2>
-                    <h2 className="dev-name-card__device-name">SMART09</h2>
+                    <h2 className="dev-name-card__device-name">{this.props.selectedDevice.name}</h2>
                 </div>
                 }
                 {!this.props.isDeviceLoading && 
@@ -86,10 +135,14 @@ class DeviceInfo extends React.Component {
                     <AccordionCard 
                         uuid="collapsable-card-1" 
                         headerTitle="Device Position" 
-                        content={<CustomMap zoom={17}></CustomMap>}
+                        content={<CustomMap 
+                                    zoom={17}
+                                    devices={[this.props.selectedDevice]}
+                                >
+                                </CustomMap>}
                     >
                     </AccordionCard>
-            
+
                     <AccordionCard 
                         uuid="collapsable-card-2" 
                         headerTitle="Data Summary" 
@@ -114,4 +167,4 @@ DeviceInfo.propTypes = {
     isDeviceLoading: PropTypes.bool
 }
 
-export default connect(mapStateToProps)(DeviceInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(DeviceInfo);

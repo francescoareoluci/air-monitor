@@ -23,7 +23,7 @@ const initialState = {
     plotType: "temperature",
     dataPlot: {},
     isDataPlotLoading: false,
-    areDeviceLoading: false,
+    areDevicesLoading: false,
     isSummaryDataLoading: false,
 };
 
@@ -39,7 +39,7 @@ function rootReducer(state = initialState, action) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
             devices: action.payload,
-            areDeviceLoading: false
+            areDevicesLoading: false
         });
         return newState;
     }
@@ -91,7 +91,7 @@ function rootReducer(state = initialState, action) {
     }
     else if (action.type == CHANGE_DEVICES_LOADING) {
         const newState = Object.assign({}, state, {
-            areDeviceLoading: action.payload
+            areDevicesLoading: action.payload
         });
         return newState; 
     }

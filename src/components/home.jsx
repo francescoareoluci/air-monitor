@@ -37,7 +37,12 @@ class Home extends React.Component {
 
     componentWillMount() {
         this.props.changeDevicesLoading(true);
-        this.props.changeDevices();
+        //this.props.changeDevices();
+        // @TODO: once connected to real data
+        // remove this
+        setTimeout(() => {
+            this.props.changeDevices();
+          }, 2000);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -77,11 +82,13 @@ class Home extends React.Component {
                             devices={this.props.devices}
                         >    
                         </CustomMap>
-                        <div className="map-image__hover">
-                            <h2 className="map-image__hover__text">
-                                Click on a device on map to begin
-                            </h2>
-                        </div>
+                        {!this.props.areDevicesLoading &&
+                            <div className="map-image__hover">
+                                <h2 className="map-image__hover__text">
+                                    Click on a device on map to begin
+                                </h2>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

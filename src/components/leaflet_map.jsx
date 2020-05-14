@@ -1,9 +1,15 @@
 import React from 'react'
+import { connect } from "react-redux";
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
+const mapStateToProps = (state) => {
+    return { 
+        areDevicesLoading: state.areDevicesLoading,
+    };
+}
 
 let DefaultIcon = L.icon({
             iconUrl: icon,
@@ -52,16 +58,24 @@ class CustomMap extends React.Component {
             }
         }
 
+        console.log(this.props.areDevicesLoading)
+
         return (
             <div className="map-wrapper">
-                {!deviceAvailable &&
+                <div className="map-container">
+                {this.props.areDevicesLoading &&
+                    <div className="lds-ring-wrapper">
+                        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                }
+                {!deviceAvailable && !this.props.areDevicesLoading &&
                     <div className="data-not-available">
                         <h2 className="data-not-available-label">
-                            Summary data not available for the selected device.
+                            Unable to find selected device.
                         </h2>
                     </div>
                 }
-                {deviceAvailable &&
+                {deviceAvailable && !this.props.areDevicesLoading &&
                     <Map center={position} zoom={this.props.zoom}>
                         <TileLayer
                             url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -86,9 +100,10 @@ class CustomMap extends React.Component {
                         </div>
                     </Map>
                 }
+                </div>
             </div>
         );
     }
 }
 
-export default CustomMap;
+export default connect(mapStateToProps)(CustomMap);

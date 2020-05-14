@@ -120,11 +120,11 @@ class SummaryTable extends React.Component {
                     </div>
                 }
                 {!this.props.isSummaryDataLoading && !this.state.isSummaryDataAvailable &&
-                        <div className="data-not-available">
-                            <h2 className="data-not-available-label">
-                                Summary data not available for the selected device.
-                            </h2>
-                        </div>
+                    <div className="data-not-available">
+                        <h2 className="data-not-available-label">
+                            Summary data not available for the selected device.
+                        </h2>
+                    </div>
                 }
                 {!this.props.isSummaryDataLoading && this.state.isSummaryDataAvailable &&
                 <div className="table-wrapper">

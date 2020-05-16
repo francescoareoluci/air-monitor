@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import PropTypes from 'prop-types';
 
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -102,6 +103,10 @@ class CustomMap extends React.Component {
             </div>
         );
     }
+}
+
+CustomMap.propTypes = {
+    areDevicesLoading: PropTypes.bool,
 }
 
 export default connect(mapStateToProps)(CustomMap);

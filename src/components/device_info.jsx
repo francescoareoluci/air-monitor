@@ -21,7 +21,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = (state) => {
     return { 
-        isDeviceLoading: state.isDeviceLoading,
+        areDevicesLoading: state.areDevicesLoading,
         selectedDevice: state.selectedDevice
     };
 };
@@ -110,17 +110,17 @@ class DeviceInfo extends React.Component {
                         </h2>
                     </div>
                 </div>
-                {this.props.isDeviceLoading &&
+                {this.props.areDevicesLoading &&
                     <div className="dev-loading">
                     </div>
                 }
-                {!this.props.isDeviceLoading && 
+                {!this.props.areDevicesLoading && 
                 <div className="dev-name-card">
                     <h2 className="dev-name-card__device-name-text">Device Name</h2>
                     <h2 className="dev-name-card__device-name">{this.props.selectedDevice.name}</h2>
                 </div>
                 }
-                {!this.props.isDeviceLoading && 
+                {!this.props.areDevicesLoading && 
                 <Accordion 
                 allowMultipleExpanded="true" 
                 allowZeroExpanded="true"
@@ -160,7 +160,8 @@ class DeviceInfo extends React.Component {
 }
 
 DeviceInfo.propTypes = {
-    isDeviceLoading: PropTypes.bool
+    areDevicesLoading: PropTypes.bool,
+    selectedDevice: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeviceInfo);

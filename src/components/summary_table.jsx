@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Modal } from 'react-responsive-modal';
+import PropTypes from 'prop-types';
 
 import 'react-responsive-modal/styles.css';
 import scroll from '../images/expand.svg';
@@ -249,6 +250,12 @@ class SummaryTable extends React.Component {
             </div>
         );
     }
+}
+
+SummaryTable.propTypes = {
+    summaryData: PropTypes.array,
+    selectedDevice: PropTypes.object,
+    isSummaryDataLoading: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummaryTable);

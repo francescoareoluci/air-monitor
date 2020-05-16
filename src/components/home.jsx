@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 import logo from "../images/logo.svg";
 import CustomMap from "./leaflet_map";
@@ -90,6 +91,12 @@ class Home extends React.Component {
             </div>
         );
     }
+}
+
+Home.propTypes = {
+    devices: PropTypes.array,
+    areDevicesLoading: PropTypes.bool,
+    selectedDevice: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

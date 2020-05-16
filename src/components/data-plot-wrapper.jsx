@@ -146,7 +146,8 @@ DataPlotWrapper.propTypes = {
     startingSelectedDate: PropTypes.instanceOf(Date),
     endingSelectedDate: PropTypes.instanceOf(Date),
     dataPlot: PropTypes.array,
-    isDataPlotLoading: PropTypes.bool
+    isDataPlotLoading: PropTypes.bool,
+    selectedDevice: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataPlotWrapper);

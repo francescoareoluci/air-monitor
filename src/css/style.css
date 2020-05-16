@@ -579,7 +579,7 @@
     background-color: #FFFFFF;
     border-radius: 4px;
     position: relative;
-    height: 384px;
+    height: 392px;
 }
 
 .lds-ring-wrapper {
@@ -765,7 +765,7 @@ body .leaflet-popup-content-wrapper {
 
     .data-plot-container {
         margin: 5px;
-        height: 344px;
+        height: 360px;
     }
 
     .plot-chart {

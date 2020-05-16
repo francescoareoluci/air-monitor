@@ -1,32 +1,32 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { changeSummaryData } from "../js/actions/change_summary_data";
-import { changeSummaryDataLoading } from "../js/actions/change_summary_data_loading";
 import { Modal } from 'react-responsive-modal';
+
+import 'react-responsive-modal/styles.css';
 import scroll from '../images/expand.svg';
 import scrollDisabled from '../images/expandDisabled.svg';
-import 'react-responsive-modal/styles.css';
 import helpIcon from '../images/helpOutline.svg'
+
+import { changeSummaryData } from "../js/actions/change_summary_data";
+import { changeSummaryDataLoading } from "../js/actions/change_summary_data_loading";
 
 
 const displayableRows = 6;
 
-
 function mapDispatchToProps(dispatch) {
     return {
-        changeSummaryData: () => dispatch(changeSummaryData()),
+        changeSummaryData: (deviceName) => dispatch(changeSummaryData(deviceName)),
         changeSummaryDataLoading: (isLoading) => dispatch(changeSummaryDataLoading(isLoading))
     };
 }
 
-
 const mapStateToProps = (state) => {
     return { 
         summaryData: state.summaryData,
+        selectedDevice: state.selectedDevice,
         isSummaryDataLoading: state.isSummaryDataLoading
     };
 };
-
 
 class SummaryTable extends React.Component {
     constructor(props) {
@@ -85,15 +85,12 @@ class SummaryTable extends React.Component {
         this.setState({ isModalOpen: newModalState });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.changeSummaryDataLoading(true);
-        setTimeout(() => {
-            this.props.changeSummaryData();
-          }, 2000);
+        this.props.changeSummaryData(this.props.selectedDevice.name);
     }
 
     componentWillReceiveProps(nextProps) {
-
         if (nextProps.summaryData !== this.props.summaryData) {
             const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < nextProps.summaryData.length ? true : false;
             let dataAvailable = nextProps.summaryData.length == 0 ? false : true;
@@ -109,7 +106,6 @@ class SummaryTable extends React.Component {
         const dataPageStart = displayableRows * this.state.currentPage;
         const dataPageEnd = displayableRows * (this.state.currentPage + 1);
         const displayRows = this.props.summaryData.slice(dataPageStart, dataPageEnd);
-        //console.log(this.state.isSummaryDataAvailable);
 
         return (
             <div className="table-header">

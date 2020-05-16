@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import ReactEcharts from "echarts-for-react";
 
+
 const plotLabels = {
     "temperature": "Temperature (°C)",
     "pm25"       : "PM2.5 (µg/m³)",
@@ -11,7 +12,7 @@ const plotLabels = {
     "rad"        : "RAD",
     "ds18"       : "DS18",
     "voc"        : "VOC",
-    "no3"        : "NO3"
+    "no2"        : "NO2"
 };
 
 const mapStateToProps = (state) => {
@@ -53,7 +54,7 @@ class DataPlot extends React.Component {
             },
             xAxis: {
                 type: 'category',
-                boundaryGap: false,
+                boundaryGap: true,
                 data: this.props.dataPlot.date,
                 axisLine: {
                     lineStyle: {
@@ -61,15 +62,20 @@ class DataPlot extends React.Component {
                     }
                 },
                 axisLabel: {
-                    rotate: 60
+                    rotate: -60,
+                    fontSize: 11,
                 },
+                axisTick: {
+                    alignWithLabel: true
+                }
             },
             yAxis: {
                 type: 'value',
                 axisLabel: {
-                    formatter: '{value}'
+                    formatter: '{value}',
+                    fontSize: 11
                 },
-                min: 10,
+                //min: 10,
                 axisLine: {
                     lineStyle: {
                         color: '#7F8082'
@@ -93,7 +99,7 @@ class DataPlot extends React.Component {
             textStyle: {
                 fontFamily: "montserrat-regular",
                 fontSize: 10
-            }
+            },
         };
     }
     

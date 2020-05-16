@@ -9,6 +9,7 @@ import {
 
 import expand from "../images/expand.svg";
 
+
 class AccordionCard extends React.Component {
     constructor(props) {
         super(props);

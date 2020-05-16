@@ -8,18 +8,23 @@ import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
 import { CHANGE_DEVICES_LOADING } from "../constants/action_types";
 
-// @TODO: remove these lines once the 
-// application will get data from cloud
+
+// Initial plot start date: 8 days ago
 let startDate = new Date();
-let tmpDate = startDate.getDate() - 7;
-startDate.setDate(tmpDate);
+let tmpStartDate = startDate.getDate() - 8;
+startDate.setDate(tmpStartDate);
+
+// Initial plot end date: yesterday
+let endDate = new Date()
+let tmpEndDate = endDate.getDate() - 1;
+endDate.setDate(tmpEndDate);
 
 const initialState = {
     devices: [],
     selectedDevice: {},
     summaryData: [],
     startingSelectedDate: startDate,
-    endingSelectedDate: new Date(),
+    endingSelectedDate: endDate,
     plotType: "temperature",
     dataPlot: {},
     isDataPlotLoading: false,

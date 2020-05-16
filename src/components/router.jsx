@@ -4,10 +4,11 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import ScrollToTop from "./scroll_to_top";
 
+import ScrollToTop from "./scroll_to_top";
 import Home from "./home"
 import DeviceInfo from "./device_info"
+
 
 //const DeviceInfo = React.lazy(() => import("./device_info"));
 

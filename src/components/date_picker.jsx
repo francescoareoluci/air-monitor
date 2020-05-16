@@ -2,8 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
+
 import { changeStartingDate } from "../js/actions/change_starting_date"
 import { changeEndingDate } from "../js/actions/change_ending_date"
+
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -18,7 +20,6 @@ const mapStateToProps = (state) => {
         endingSelectedDate: state.endingSelectedDate
     };
 };
-    
 
 class DatePickerCustom extends React.Component {
 

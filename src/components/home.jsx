@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+
+import logo from "../images/logo.svg";
+import CustomMap from "./leaflet_map";
+
 import { changeDevices } from "../js/actions/change_devices";
 import { changeDevicesLoading } from "../js/actions/change_devices_loading";
 import { changeSelectedDevice } from "../js/actions/change_selected_device";
-import logo from "../images/logo.svg";
-import CustomMap from "./leaflet_map";
+
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -14,7 +17,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
 const mapStateToProps = (state) => {
     return { 
         devices: state.devices,
@@ -22,7 +24,6 @@ const mapStateToProps = (state) => {
         selectedDevice: state.selectedDevice
     };
 };
-
 
 class Home extends React.Component {
     constructor(props) {
@@ -37,12 +38,7 @@ class Home extends React.Component {
 
     componentWillMount() {
         this.props.changeDevicesLoading(true);
-        //this.props.changeDevices();
-        // @TODO: once connected to real data
-        // remove this
-        setTimeout(() => {
-            this.props.changeDevices();
-          }, 2000);
+        this.props.changeDevices();
     }
 
     componentWillReceiveProps(nextProps) {

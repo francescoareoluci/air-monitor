@@ -1,10 +1,10 @@
 import axios from "axios";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
 
-function formatDate(date) {
-    let d = [('0' + date.getDate()).slice(-2), ('0' + (date.getMonth() + 1)).slice(-2), date.getFullYear()].join('/');
 
-    return d.slice(0, d.length-2);
+function formatDate(date) {
+    let d = [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2) ].join('-');
+    return d;
 }
 
 Date.prototype.addDays = function(days) {
@@ -13,67 +13,79 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
-function getDates(startDate, stopDate) {
-    var dateArray = new Array();
-    var currentDate = startDate;
-    while (currentDate <= stopDate) {
-        dateArray.push(formatDate(new Date (currentDate)));
-        currentDate = currentDate.addDays(1);
+const dispatchDataPlot = payload => (
+    { type: CHANGE_DATA_PLOT, payload }
+);
+
+export function changeDataPlot(deviceName, startDate, endDate) {
+    return function (dispatch) {
+        let payload = {}
+        startDate = formatDate(startDate);
+        endDate = formatDate(endDate);
+        return axios.get('http://localhost:7071/api/AirMonitorRest?request=getDeviceInfo&name='
+                        + deviceName + '&from=' + startDate + '&to=' + endDate)
+            .then(result => {
+                let days = [];
+                let temperatures = [];
+                let pm25Arr = [];
+                let pm10Arr = [];
+                let co2Arr = [];
+                let radArr = [];
+                let ds18Arr = [];
+                let vocArr = [];
+                let no2Arr = [];
+
+                result.data.samples.map((sample) => {
+                    // Format date
+                    let formattedTime = sample.time.replace(/-/g, "/");
+                    formattedTime = formattedTime.replace("_", " h");
+                    formattedTime = formattedTime.substring(5);
+
+                    days.push(formattedTime);
+                    // Sensors can have missing data,
+                    // pushing null data in our arrays
+                    // will let the plot handle these misses
+                    if (sample.missingData == "false") {
+                        temperatures.push(sample.avgTemp);
+                        pm25Arr.push(sample.avgPm2_5);
+                        pm10Arr.push(sample.avgPm10);
+                        co2Arr.push(sample.avgCo2);
+                        radArr.push(sample.avgRad);
+                        ds18Arr.push(sample.avgDs18);
+                        vocArr.push(sample.avgVoc);
+                        no2Arr.push(sample.avgNo2);
+                    }
+                    else {
+                        temperatures.push(null);
+                        pm25Arr.push(null);
+                        pm10Arr.push(null);
+                        co2Arr.push(null);
+                        radArr.push(null);
+                        ds18Arr.push(null);
+                        vocArr.push(null);
+                        no2Arr.push(null);
+                    }
+                });
+
+                payload = {
+                    date: days,
+                    plotTypes: {
+                        "temperature": temperatures,
+                        "pm25"       : pm25Arr,
+                        "pm10"       : pm10Arr,
+                        "co2"        : co2Arr,
+                        "rad"        : radArr,
+                        "ds18"       : ds18Arr,
+                        "voc"        : vocArr,
+                        "no2"        : no2Arr,
+                    }
+                }
+                dispatch(dispatchDataPlot(payload));
+            })
+            .catch(error => {
+                    console.log(error);
+                    dispatch(dispatchDataPlot(payload));
+                    // @TODO: handle error
+            })
     }
-    return dateArray;
 }
-
-function generateData(count) {
-    let arr = [];
-    count += 1;
-    for (let i = 0; i < count; i += 1) {
-        let rand = Math.floor(Math.random() * (20 - 10 + 1) + 10);
-        arr.push(rand);
-    }
-    
-    return arr;
-}
-
-export function changeDataPlot(startDate, endDate) {
-    //axios.get(`https://jsonplaceholder.typicode.com/users`).then((result) => 
-    //{
-    //    const people = result.data;
-    //    this.setState({ 
-    //      people: people });
-    //})
-
-    const diffTime = Math.abs(endDate - startDate);
-    const dateDiffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    //console.log(dateDiffDays);
-
-    let start = formatDate(startDate);
-    let end = formatDate(endDate);
-
-    let days = getDates(startDate, endDate);
-    //console.log(days);
-
-    let temperatures = generateData(dateDiffDays);
-    let pm25Arr = generateData(dateDiffDays);
-    let pm10Arr = generateData(dateDiffDays);
-    let co2Arr = generateData(dateDiffDays);
-    let radArr = generateData(dateDiffDays);
-    let ds18Arr = generateData(dateDiffDays);
-    let vocArr = generateData(dateDiffDays);
-    let no3Arr = generateData(dateDiffDays);
-
-    let payload = {
-        //date: ["01/01/20", "02/01/20", "03/01/20", "04/01/20", "05/01/20", "06/01/20"],
-        date: days,
-        plotTypes: {
-            "temperature": temperatures,
-            "pm25"       : pm25Arr,
-            "pm10"       : pm10Arr,
-            "co2"        : co2Arr,
-            "rad"        : radArr,
-            "ds18"       : ds18Arr,
-            "voc"        : vocArr,
-            "no3"        : no3Arr,
-        }
-    };
-    return { type: CHANGE_DATA_PLOT, payload }
-};

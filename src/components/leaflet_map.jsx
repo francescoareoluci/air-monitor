@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 const mapStateToProps = (state) => {
     return { 
@@ -12,12 +14,10 @@ const mapStateToProps = (state) => {
 }
 
 let DefaultIcon = L.icon({
-            iconUrl: icon,
-            shadowUrl: iconShadow
-        });
-        L.Marker.prototype.options.icon = DefaultIcon;
-
-//const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
+L.Marker.prototype.options.icon = DefaultIcon;
 
 class CustomMap extends React.Component {
     constructor(props) {
@@ -58,8 +58,6 @@ class CustomMap extends React.Component {
             }
         }
 
-        console.log(this.props.areDevicesLoading)
-
         return (
             <div className="map-wrapper">
                 <div className="map-container">
@@ -71,7 +69,7 @@ class CustomMap extends React.Component {
                 {!deviceAvailable && !this.props.areDevicesLoading &&
                     <div className="data-not-available">
                         <h2 className="data-not-available-label">
-                            Unable to find selected device.
+                            Unable to get devices position
                         </h2>
                     </div>
                 }

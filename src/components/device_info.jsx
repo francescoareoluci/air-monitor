@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Accordion } from 'react-accessible-accordion';
 import { connect } from "react-redux";
-import { changeSelectedDevice } from "../js/actions/change_selected_device";
 import PropTypes from 'prop-types';
 
 import AccordionCard from "./accordion_card";
@@ -11,6 +10,8 @@ import DatePickerCustom from "./date_picker";
 import DataPlotWrapper from "./data-plot-wrapper";
 import backHome from "../images/backHome.svg";
 
+import { changeSelectedDevice } from "../js/actions/change_selected_device";
+
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -18,14 +19,12 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
 const mapStateToProps = (state) => {
     return { 
         isDeviceLoading: state.isDeviceLoading,
         selectedDevice: state.selectedDevice
     };
 };
-
 
 class DeviceInfo extends React.Component {
     constructor(props) {
@@ -97,9 +96,6 @@ class DeviceInfo extends React.Component {
     }
 
     render() {
-        //console.log(this.props.selectedDevice);
-        //const isDeviceAvailable = !this.isObjectEmpty(this.props.selectedDevice);
-
         return (
             <div className="page-root">
                 <div className="header">

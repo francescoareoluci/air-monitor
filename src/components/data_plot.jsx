@@ -75,7 +75,7 @@ class DataPlot extends React.Component {
                 splitArea: {
                     show: true,
                     areaStyle: {
-                        color: ['rgba(250, 250, 250, 0.3)','rgba(235, 235, 235, 0.3)']
+                        color: ['rgba(250, 250, 250, 0.3)','rgba(225, 225, 225, 0.3)']
                     }
                 }
             },

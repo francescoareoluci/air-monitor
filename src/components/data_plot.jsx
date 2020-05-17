@@ -54,7 +54,6 @@ class DataPlot extends React.Component {
             },
             xAxis: {
                 type: 'category',
-                boundaryGap: true,
                 data: this.props.dataPlot.date,
                 axisLine: {
                     lineStyle: {
@@ -62,11 +61,22 @@ class DataPlot extends React.Component {
                     }
                 },
                 axisLabel: {
-                    rotate: -60,
+                    rotate: -30,
                     fontSize: 11,
+                    margin: 12,
                 },
+                /*
                 axisTick: {
-                    alignWithLabel: true
+                    alignWithLabel: true,
+                },*/
+                splitLine: {
+                    show: true,       
+                },
+                splitArea: {
+                    show: true,
+                    areaStyle: {
+                        color: ['rgba(250, 250, 250, 0.3)','rgba(235, 235, 235, 0.3)']
+                    }
                 }
             },
             yAxis: {

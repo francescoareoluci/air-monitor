@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
     return { 
         summaryData: state.summaryData,
         selectedDevice: state.selectedDevice,
-        isSummaryDataLoading: state.isSummaryDataLoading
+        isSummaryDataLoading: state.isSummaryDataLoading,
+        isSummaryDataFailed: state.isSummaryDataFailed
     };
 };
 
@@ -46,6 +47,10 @@ class SummaryTable extends React.Component {
     }
 
     increasePage() {
+        if (this.props.summaryData == null) {
+            return;
+        }
+
         if (displayableRows * (this.state.currentPage + 1) > this.props.summaryData.length) {
             return;
         }
@@ -92,6 +97,10 @@ class SummaryTable extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.summaryData == null) {
+            return;
+        }
+
         if (nextProps.summaryData !== this.props.summaryData) {
             const isNextPageAvailable = displayableRows * (this.state.currentPage + 1) < nextProps.summaryData.length ? true : false;
             let dataAvailable = nextProps.summaryData.length == 0 ? false : true;
@@ -110,20 +119,38 @@ class SummaryTable extends React.Component {
 
         return (
             <div className="table-header">
-                <div className="table-container">
                 {this.props.isSummaryDataLoading &&
-                    <div className="lds-ring-wrapper">
-                        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    <div className="table-alternative">
+                        <div className="lds-ring-wrapper">
+                            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
                     </div>
                 }
-                {!this.props.isSummaryDataLoading && !this.state.isSummaryDataAvailable &&
-                    <div className="data-not-available">
-                        <h2 className="data-not-available-label">
-                            Summary data not available for the selected device.
-                        </h2>
+                {!this.props.isSummaryDataLoading && 
+                this.props.isSummaryDataFailed &&
+                    <div className="table-alternative">
+                        <div className="data-not-available">
+                            <h2 className="data-not-available-label">
+                                Unable to contact the server to get requested data.
+                                Please try again later.
+                            </h2>
+                        </div>
                     </div>
                 }
-                {!this.props.isSummaryDataLoading && this.state.isSummaryDataAvailable &&
+                {!this.props.isSummaryDataLoading && 
+                !this.state.isSummaryDataAvailable && 
+                !this.props.isSummaryDataFailed &&
+                    <div className="table-alternative">
+                        <div className="data-not-available">
+                            <h2 className="data-not-available-label">
+                                Summary data not available for the selected device.
+                            </h2>
+                        </div>
+                    </div>
+                }
+                {!this.props.isSummaryDataLoading && 
+                this.state.isSummaryDataAvailable && 
+                !this.props.isSummaryDataFailed &&
                 <div className="table-wrapper">
                     <div className="table-row">
                         <div className="table-cell">
@@ -247,7 +274,6 @@ class SummaryTable extends React.Component {
                 </div>
                 }
             </div>
-            </div>
         );
     }
 }
@@ -255,7 +281,8 @@ class SummaryTable extends React.Component {
 SummaryTable.propTypes = {
     summaryData: PropTypes.array,
     selectedDevice: PropTypes.object,
-    isSummaryDataLoading: PropTypes.bool
+    isSummaryDataLoading: PropTypes.bool,
+    isSummaryDataFailed: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummaryTable);

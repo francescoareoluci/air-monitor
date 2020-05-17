@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
         endingSelectedDate: state.endingSelectedDate,
         dataPlot: state.dataPlot,
         isDataPlotLoading: state.isDataPlotLoading,
-        selectedDevice: state.selectedDevice
+        selectedDevice: state.selectedDevice,
+        isDataPlotFailed: state.isDataPlotFailed
     };
 };
 
@@ -77,6 +78,10 @@ class DataPlotWrapper extends React.Component {
                 this.props.changeDataPlot(this.props.selectedDevice.name, nextProps.startingSelectedDate, nextProps.endingSelectedDate);
         }
         if (nextProps.dataPlot !== this.props.dataPlot) {
+            if (nextProps.dataPlot.date == null) {
+                return;
+            }
+
             let dataAvailable = nextProps.dataPlot.date.length == 0 ? false : true;
             this.setState({
                 isDataAvailable: dataAvailable
@@ -123,15 +128,28 @@ class DataPlotWrapper extends React.Component {
                             <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
                         </div>
                     }
-                    {!this.props.isDataPlotLoading && !this.state.isDataAvailable &&
-                        <div className="data-not-available">
+                    {!this.props.isDataPlotLoading && 
+                    this.props.isDataPlotFailed &&
+                        <div className="data-plot-not-available">
+                            <h2 className="data-not-available-label">
+                                Unable to contact the server to get requested data.
+                                Please try again later.
+                            </h2>
+                        </div>
+                    }
+                    {!this.props.isDataPlotLoading && 
+                    !this.state.isDataAvailable && 
+                    !this.props.isDataPlotFailed &&
+                        <div className="data-plot-not-available">
                             <h2 className="data-not-available-label">
                                 Data not available for the selected days.
                                 Please select a different time range.
                             </h2>
                         </div>
                     }
-                    {!this.props.isDataPlotLoading && this.state.isDataAvailable &&
+                    {!this.props.isDataPlotLoading && 
+                    this.state.isDataAvailable && 
+                    !this.props.isDataPlotFailed &&
                         <DataPlot>
                         </DataPlot>
                     }
@@ -147,7 +165,8 @@ DataPlotWrapper.propTypes = {
     endingSelectedDate: PropTypes.instanceOf(Date),
     dataPlot: PropTypes.array,
     isDataPlotLoading: PropTypes.bool,
-    selectedDevice: PropTypes.object
+    selectedDevice: PropTypes.object,
+    isDataPlotFailed: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataPlotWrapper);

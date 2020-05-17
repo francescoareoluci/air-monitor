@@ -1,9 +1,14 @@
 import axios from "axios";
 import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
+import { CHANGE_SUMMARY_DATA_FAIL } from "../constants/action_types";
 
 
 const dispatchSummaryData = rows => (
     { type: CHANGE_SUMMARY_DATA, rows }
+);
+
+const dispatchSummaryDataFailed = state => (
+    { type: CHANGE_SUMMARY_DATA_FAIL, state }
 );
 
 export function changeSummaryData(deviceName) {
@@ -23,12 +28,11 @@ export function changeSummaryData(deviceName) {
                     rows.push(row);
                 });
                 rows.reverse();
-                dispatch(dispatchSummaryData(rows))
+                dispatch(dispatchSummaryData(rows));
             })
             .catch(error => {
                 console.log(error);
-                dispatch(dispatchSummaryData(rows))
-                // @TODO: handle error
+                dispatch(dispatchSummaryDataFailed(true));
             })
     }
 };

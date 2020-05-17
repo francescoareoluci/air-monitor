@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
+import { CHANGE_DATA_PLOT_FAIL } from "../constants/action_types";
 
 
 function formatDate(date) {
@@ -15,6 +16,10 @@ Date.prototype.addDays = function(days) {
 
 const dispatchDataPlot = payload => (
     { type: CHANGE_DATA_PLOT, payload }
+);
+
+const dispatchDataPlotFailed = state => (
+    { type: CHANGE_DATA_PLOT_FAIL, state }
 );
 
 export function changeDataPlot(deviceName, startDate, endDate) {
@@ -83,9 +88,8 @@ export function changeDataPlot(deviceName, startDate, endDate) {
                 dispatch(dispatchDataPlot(payload));
             })
             .catch(error => {
-                    console.log(error);
-                    dispatch(dispatchDataPlot(payload));
-                    // @TODO: handle error
+                console.log(error);
+                dispatch(dispatchDataPlotFailed(true));
             })
     }
 }

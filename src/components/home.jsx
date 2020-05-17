@@ -48,7 +48,20 @@ class Home extends React.Component {
         }
     }
 
+    isObjectEmpty(obj) {
+        for(let key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     render() {
+        let devicesAvailable = false;
+        if (this.props.devices != null && !this.isObjectEmpty(this.props.devices[0])) {
+            devicesAvailable = true;
+        }
+
         return (
             <div className="page-root">
                 <div className="header">
@@ -79,7 +92,7 @@ class Home extends React.Component {
                             devices={this.props.devices}
                         >    
                         </CustomMap>
-                        {!this.props.areDevicesLoading &&
+                        {!this.props.areDevicesLoading && devicesAvailable &&
                             <div className="map-image__hover">
                                 <h2 className="map-image__hover__text">
                                     Click on a device on map to begin

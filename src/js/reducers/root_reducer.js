@@ -7,6 +7,8 @@ import { CHANGE_PLOT_TYPE } from "../constants/action_types";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_LOADING } from "../constants/action_types";
 import { CHANGE_DEVICES_LOADING } from "../constants/action_types";
+import { CHANGE_SUMMARY_DATA_FAIL } from "../constants/action_types";
+import { CHANGE_DATA_PLOT_FAIL } from "../constants/action_types";
 
 
 // Initial plot start date: 8 days ago
@@ -30,6 +32,8 @@ const initialState = {
     isDataPlotLoading: false,
     areDevicesLoading: false,
     isSummaryDataLoading: false,
+    isSummaryDataFailed: false,
+    isDataPlotFailed: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -52,7 +56,8 @@ function rootReducer(state = initialState, action) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
             summaryData: action.rows,
-            isSummaryDataLoading: false
+            isSummaryDataLoading: false,
+            isSummaryDataFailed: false
         });
         return newState;
     }
@@ -83,7 +88,8 @@ function rootReducer(state = initialState, action) {
         // @TODO: add validation 
         const newState = Object.assign({}, state, {
             dataPlot: action.payload,
-            isDataPlotLoading: false
+            isDataPlotLoading: false,
+            isDataPlotFailed: false
         });
         return newState; 
     }
@@ -105,6 +111,20 @@ function rootReducer(state = initialState, action) {
             isSummaryDataLoading: action.isLoading
         });
         return newState; 
+    }
+    else if (action.type == CHANGE_SUMMARY_DATA_FAIL) {
+        const newState = Object.assign({}, state, {
+            isSummaryDataFailed: action.state,
+            isSummaryDataLoading: false
+        });
+        return newState;
+    }
+    else if (action.type == CHANGE_DATA_PLOT_FAIL) {
+        const newState = Object.assign({}, state, {
+            isDataPlotFailed: action.state,
+            isDataPlotLoading: false
+        });
+        return newState;
     }
 
     return state;

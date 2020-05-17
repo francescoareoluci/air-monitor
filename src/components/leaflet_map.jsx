@@ -43,7 +43,11 @@ class CustomMap extends React.Component {
     render() {
         let position = [];
         let deviceAvailable = false;
-        if (this.props.devices.length === 0) {
+        if (this.props.devices.length == null) {
+            // Fallback
+            position = [this.state.lat, this.state.lng];
+        }
+        else if (this.props.devices.length === 0) {
             // Fallback
             position = [this.state.lat, this.state.lng];
         }
@@ -61,17 +65,20 @@ class CustomMap extends React.Component {
 
         return (
             <div className="map-wrapper">
-                <div className="map-container">
                 {this.props.areDevicesLoading &&
-                    <div className="lds-ring-wrapper">
-                        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    <div className="map-alternative-loading">
+                        <div className="lds-ring-wrapper">
+                            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
                     </div>
                 }
                 {!deviceAvailable && !this.props.areDevicesLoading &&
-                    <div className="data-not-available">
-                        <h2 className="data-not-available-label">
-                            Unable to get devices position
-                        </h2>
+                    <div className="map-alternative-fail">
+                        <div className="data-map-not-available">
+                            <h2 className="data-not-available-label">
+                                Unable to get devices position. Please try again later.
+                            </h2>
+                        </div>
                     </div>
                 }
                 {deviceAvailable && !this.props.areDevicesLoading &&
@@ -99,7 +106,6 @@ class CustomMap extends React.Component {
                         </div>
                     </Map>
                 }
-                </div>
             </div>
         );
     }

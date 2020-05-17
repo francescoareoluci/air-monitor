@@ -14,7 +14,7 @@ const dispatchSummaryDataFailed = state => (
 export function changeSummaryData(deviceName) {
     return function (dispatch) {
         let rows = [];
-        return axios.get('http://localhost:7071/api/AirMonitorRest?request=getDeviceSummary&name=' + deviceName)
+        return axios.get('https://pullairmonitordata.azurewebsites.net/api/summary-data?device-name=' + deviceName)
             .then(result => {
                 result.data.samples.map((sample) => {
                     const formattedTime = sample.time.replace(/-/g, "/");

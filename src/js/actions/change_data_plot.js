@@ -23,11 +23,16 @@ const dispatchDataPlotFailed = state => (
 );
 
 export function changeDataPlot(deviceName, startDate, endDate) {
+    if (deviceName == null || startDate == null || endDate == null) {
+        dispatchDataPlotFailed(true)    
+        return    
+    }
+
     return function (dispatch) {
         let payload = {}
         startDate = formatDate(startDate);
         endDate = formatDate(endDate);
-        return axios.get('http://localhost:7071/api/AirMonitorRest?request=getDeviceInfo&name='
+        return axios.get('https://pullairmonitordata.azurewebsites.net/api/device-data?device-name='
                         + deviceName + '&from=' + startDate + '&to=' + endDate)
             .then(result => {
                 let days = [];

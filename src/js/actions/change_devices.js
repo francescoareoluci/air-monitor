@@ -9,7 +9,7 @@ const dispatchDevices = payload => (
 export function changeDevices() {
     return function (dispatch) {
         let payload = [];
-        return axios.get('http://localhost:7071/api/AirMonitorRest?request=getAllDevices')
+        return axios.get('https://pullairmonitordata.azurewebsites.net/api/registered-devices')
             .then(result => {
                 result.data.devices.map((dev) => {
                     let device = {
@@ -24,7 +24,6 @@ export function changeDevices() {
             .catch(error => {
                 console.log(error);
                 dispatch(dispatchDevices(payload))
-                // @TODO: handle error
             });
     }
 };

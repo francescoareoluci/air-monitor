@@ -92,6 +92,7 @@ class CustomMap extends React.Component {
                         <Marker position={[device.latitude, device.longitude]}>
                             <Popup style="border-radius: 4px;">
                                     <div className="device-selector-description">
+                                        <h2>Sensor name: {device.name}</h2>
                                         <h2>Latitude: {device.latitude}</h2>
                                         <h2>Longitude: {device.longitude}</h2>
                                     </div>

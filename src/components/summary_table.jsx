@@ -56,7 +56,7 @@ class SummaryTable extends React.Component {
         }
 
         const nextPage = this.state.currentPage + 1;
-        const isNextPageAvailable = displayableRows * (nextPage + 1) > this.props.summaryData.length ? false : true
+        const isNextPageAvailable = displayableRows * (nextPage + 1) >= this.props.summaryData.length ? false : true
         this.setState({
             currentPage: nextPage,
             isPreviousScrollEnabled: true,

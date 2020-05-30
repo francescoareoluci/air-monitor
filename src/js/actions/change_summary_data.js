@@ -1,6 +1,11 @@
 import axios from "axios";
 import { CHANGE_SUMMARY_DATA } from "../constants/action_types";
 import { CHANGE_SUMMARY_DATA_FAIL } from "../constants/action_types";
+import {
+    URL_PROD_SUMMARY_DATA,
+    URL_DEV_SUMMARY_DATA
+} from "../constants/rest_api";
+import { BUILD_VAR, BUILD_PROD } from "../constants/env_vars";
 
 
 const dispatchSummaryData = rows => (
@@ -14,7 +19,10 @@ const dispatchSummaryDataFailed = state => (
 export function changeSummaryData(deviceName) {
     return function (dispatch) {
         let rows = [];
-        return axios.get('https://pullairmonitordata.azurewebsites.net/api/summary-data?device-name=' + deviceName)
+        const url = BUILD_VAR === BUILD_PROD ? URL_PROD_SUMMARY_DATA(deviceName) : 
+                                                URL_DEV_SUMMARY_DATA(deviceName);
+
+        return axios.get(url)
             .then(result => {
                 result.data.samples.map((sample) => {
                     const formattedTime = sample.time.replace(/-/g, "/");

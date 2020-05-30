@@ -1,6 +1,11 @@
 import axios from "axios";
 import { CHANGE_DATA_PLOT } from "../constants/action_types";
 import { CHANGE_DATA_PLOT_FAIL } from "../constants/action_types";
+import {
+    URL_PROD_DEVICE_DATA,
+    URL_DEV_DEVICE_DATA
+} from "../constants/rest_api";
+import { BUILD_VAR, BUILD_PROD } from "../constants/env_vars";
 
 
 function formatDate(date) {
@@ -32,8 +37,11 @@ export function changeDataPlot(deviceName, startDate, endDate) {
         let payload = {}
         startDate = formatDate(startDate);
         endDate = formatDate(endDate);
-        return axios.get('https://pullairmonitordata.azurewebsites.net/api/device-data?device-name='
-                        + deviceName + '&from=' + startDate + '&to=' + endDate)
+
+        const url = BUILD_VAR === BUILD_PROD ? URL_PROD_DEVICE_DATA(deviceName, startDate, endDate) :
+                                                URL_DEV_DEVICE_DATA(deviceName, startDate, endDate);
+
+        return axios.get(url)
             .then(result => {
                 let days = [];
                 let temperatures = [];

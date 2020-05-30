@@ -89,6 +89,14 @@ class DataPlotWrapper extends React.Component {
         }
     }
 
+    // A tricky way to disable keyboard on mobile devices
+    componentDidMount() {
+        let select = document.getElementById("react-select-2-input");
+        if (select !== null) {
+            select.setAttribute("readOnly", true);
+        }
+    };
+
     render() {
         return (
             <div className="data-plot-wrapper">

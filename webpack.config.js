@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = {
+module.exports = (env) => ({
   entry: "./src/js/index.js",
   mode: "development",
   module: {
@@ -60,8 +60,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      "process.env.BUILD_TYPE": JSON.stringify(env.BUILD_TYPE || "dev")
+    })
   ],
   optimization: {
     minimize: true
   }
-}
+})

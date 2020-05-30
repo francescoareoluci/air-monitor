@@ -41,8 +41,14 @@ class DatePickerCustom extends React.Component {
 
     handleDateChangeRaw(event) {
         event.preventDefault();
-    }
-      
+    }    
+
+    // A tricky way to disable keyboard on mobile devices
+    componentDidMount() {
+        const datePickers = document.getElementsByClassName("react-datepicker__input-container");
+        Array.from(datePickers).forEach((el => el.childNodes[0].setAttribute("readOnly", true)))
+    };
+
     render() {
         return (
             <div className="date-picker-container">

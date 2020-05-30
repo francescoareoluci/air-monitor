@@ -141,7 +141,7 @@ class DeviceInfo extends React.Component {
 
                     <AccordionCard 
                         uuid="collapsable-card-2" 
-                        headerTitle="Data Summary" 
+                        headerTitle="Daily Mean Values" 
                         content={this.renderTable()}
                     >
                     </AccordionCard>

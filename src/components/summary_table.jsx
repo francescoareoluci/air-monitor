@@ -214,7 +214,7 @@ class SummaryTable extends React.Component {
                             <div className="table-header-cell clickable"
                                 onClick={() => this.onOpenModal(2)}>
                                 <h2 className="table-header-cell-text">
-                                PM2.5
+                                    PM2.5
                                 </h2>
                                 <img className="help-icon" src={helpIcon} />
                             </div>
@@ -231,22 +231,22 @@ class SummaryTable extends React.Component {
                             </div>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
-                                    {row.temp}
+                                    {row.temp} °C
                                 </h2>
                             </div>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
-                                    {row.co2}
+                                    {row.co2} ppm
                                 </h2>
                             </div>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
-                                    {row.pm10}
+                                    {row.pm10} µg/m³
                                 </h2>
                             </div>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
-                                    {row.pm25}
+                                    {row.pm25} µg/m³
                                 </h2>
                             </div>
                         </div>

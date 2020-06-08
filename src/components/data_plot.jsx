@@ -85,7 +85,6 @@ class DataPlot extends React.Component {
                     formatter: '{value}',
                     fontSize: 11
                 },
-                //min: 10,
                 axisLine: {
                     lineStyle: {
                         color: '#7F8082'
@@ -127,7 +126,7 @@ class DataPlot extends React.Component {
 
 DataPlot.propTypes = {
     plotType: PropTypes.string,
-    dataPlot: PropTypes.array
+    dataPlot: PropTypes.object
 }
 
 export default connect(mapStateToProps)(DataPlot);

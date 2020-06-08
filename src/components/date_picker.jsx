@@ -74,8 +74,8 @@ class DatePickerCustom extends React.Component {
 }
 
 DatePickerCustom.propTypes = {
-    startingSelectedDate: PropTypes.date,
-    endingSelectedDate: PropTypes.date,
+    startingSelectedDate: PropTypes.instanceOf(Date),
+    endingSelectedDate: PropTypes.instanceOf(Date),
     isStartPicker: PropTypes.bool
 }
 

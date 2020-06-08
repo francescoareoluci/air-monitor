@@ -223,7 +223,7 @@ class SummaryTable extends React.Component {
                     <div className="table-body">
                     {displayRows.map((row) => (
 
-                        <div className="table-row" key={row.name}>
+                        <div className="table-row" key={row.date}>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
                                     {row.date}

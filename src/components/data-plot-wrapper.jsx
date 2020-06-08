@@ -171,7 +171,7 @@ DataPlotWrapper.propTypes = {
     plotType: PropTypes.string,
     startingSelectedDate: PropTypes.instanceOf(Date),
     endingSelectedDate: PropTypes.instanceOf(Date),
-    dataPlot: PropTypes.array,
+    dataPlot: PropTypes.object,
     isDataPlotLoading: PropTypes.bool,
     selectedDevice: PropTypes.object,
     isDataPlotFailed: PropTypes.bool

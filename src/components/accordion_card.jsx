@@ -62,7 +62,7 @@ class AccordionCard extends React.Component {
 AccordionCard.propTypes = {
     uuid: PropTypes.string,
     headerTitle: PropTypes.string,
-    content: PropTypes.func
+    content: PropTypes.object
 }
 
 export default AccordionCard;

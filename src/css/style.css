@@ -40,6 +40,11 @@
     100% { transform: rotate(0deg); }
 }
 
+@keyframes expand {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 /* =============== Setting styles =============== */
 .page-root {
     background-color: #F8F8F8;
@@ -178,6 +183,11 @@
     max-width: 80px;
     margin-right: 32px;
     animation: rotateUp 0.25s 1 normal forwards;
+}
+
+/* @override */
+.accordion__panel {
+    animation: expand 0.25s ease-in;
 }
 
 /* @override */

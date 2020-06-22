@@ -76,7 +76,7 @@ class CustomMap extends React.Component {
                     <div className="map-alternative-fail">
                         <div className="data-map-not-available">
                             <h2 className="data-not-available-label">
-                                Unable to get devices position. Please try again later.
+                                Unable to get devices' position. Please try again later.
                             </h2>
                         </div>
                     </div>

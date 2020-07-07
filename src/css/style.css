@@ -306,6 +306,10 @@
     display: flex;
 }
 
+.table-row.alt-bg {
+    background-color: #f7f7f7;
+}
+
 .table-cell {
     flex: 0 0;
     flex-basis: 20%;

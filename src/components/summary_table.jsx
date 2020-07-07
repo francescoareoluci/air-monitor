@@ -221,9 +221,11 @@ class SummaryTable extends React.Component {
                         </div>
                     </div>
                     <div className="table-body">
-                    {displayRows.map((row) => (
+                    {displayRows.map((row, index) => (
 
-                        <div className="table-row" key={row.date}>
+                        <div 
+                            className={`table-row ${index % 2 != (this.state.currentPage % 2) ? "alt-bg" : ""}`} 
+                            key={row.date}>
                             <div className="table-cell">
                                 <h2 className="table-body-cell">
                                     {row.date}

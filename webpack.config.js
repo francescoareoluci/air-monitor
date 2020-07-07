@@ -52,8 +52,8 @@ module.exports = (env) => ({
   devServer: {
     contentBase: path.join(__dirname, "dist/"),
     publicPath: "/air-monitor/",
-    host: '192.168.43.123',
-    port: 3000,
+    host: 'localhost',
+    port: 8080,
     disableHostCheck: true,
     hotOnly: true,
     historyApiFallback: true

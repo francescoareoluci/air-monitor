@@ -5,7 +5,7 @@
   "homepage": "https://francescoareoluci.github.io/air-monitor/",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --host 0.0.0.0 --env.BUILD_TYPE=dev",
     "build-dev": "webpack --mode development --env.BUILD_TYPE=dev",
     "build-prod": "webpack --mode production --env.BUILD_TYPE=prod",
     "deploy": "gh-pages -d dist"

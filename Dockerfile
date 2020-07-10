@@ -1,4 +1,4 @@
-FROM node:12.18.2
+FROM node:14.5.0-stretch-slim
 
 RUN mkdir -p /app
 

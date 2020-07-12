@@ -433,11 +433,17 @@
 
 .date-picker-input {
     display: flex;
+    position: relative;
     flex-flow: row nowrap;
     justify-content: space-between;
     border-bottom: 2px solid #7F8082;
     max-width: 180px;
     transition: all 0.5s;
+}
+
+/* @override */
+.react-datepicker-wrapper {
+    z-index: 2;
 }
 
 .date-picker-input:hover {
@@ -462,6 +468,9 @@
 
 .calendar {
     flex: 1 1 auto;
+    position: absolute;
+    right: 0;
+    z-index: 1;
     width: 14px;
     height: 14px;
     max-width: 14px;
@@ -488,8 +497,10 @@
     font-size: 12px;
     padding-left: 8px;
     transition: all 0.5s;
-    max-width: 104px;
+    /*max-width: 104px;*/
     cursor: pointer;
+    width: 100%;
+    background-color: transparent
 }
 
 .date-picker:focus {

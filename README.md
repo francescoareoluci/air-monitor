@@ -33,6 +33,7 @@ The purpose of this project is to explore a new development process for building
 ## Project Outcome
 
 The serverless web app has been deployed through Github Pages and is reachable at the following address: https://francescoareoluci.github.io/air-monitor
+
 The application interact with Azure deployed functions that are also been pushed to this repository: https://github.com/francescoareoluci/air-monitor-cloud
 
 ## Bibliography

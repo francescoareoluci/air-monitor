@@ -1,7 +1,7 @@
 
 # Air Monitor
 
-## Project Overviewe
+## Project Overview
 
 - **Academic Year**: 2019-2020
 - **Project Title**: Serverless Cloud Based Air Quality Monitoring Web Application
